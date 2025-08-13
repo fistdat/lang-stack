@@ -1,8 +1,6 @@
 # Lang Stack .gitignore
 
-# Git submodules (handled separately)
-langflow/
-langfuse/
+# Note: langflow/ and langfuse/ directories are included in this repository
 
 # Environment files with secrets
 .env
