@@ -1,0 +1,17 @@
+# Extended Langflow with Langfuse integration
+FROM langflowai/langflow:latest
+
+# Switch to root to modify files
+USER root
+
+# Install langfuse for tracing
+RUN pip install langfuse
+
+# Copy the updated Langflow source code with Langfuse integration fix
+COPY langflow/src/backend/base/langflow/services/tracing/langfuse.py /app/.venv/lib/python3.12/site-packages/langflow/services/tracing/langfuse.py
+
+# Switch back to the original user if needed
+# USER langflow
+
+# Use the default Langflow entrypoint
+CMD ["langflow", "run"]

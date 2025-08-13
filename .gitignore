@@ -1,0 +1,50 @@
+# Lang Stack .gitignore
+
+# Git submodules (handled separately)
+langflow/
+langfuse/
+
+# Environment files with secrets
+.env
+.env.local
+.env.production
+
+# Docker volumes and data
+*.log
+logs/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+
+# Docker build context
+.dockerignore
+
+# Node modules (if any)
+node_modules/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
