@@ -137,7 +137,7 @@ async def download_profile_picture(
         config_path = Path(config_dir)  # type: ignore[arg-type]
         folder_path = config_path / "profile_pictures" / folder_name
         content_type = build_content_type_from_extension(extension)
-        file_content = await storage_service.get_file(flow_id=folder_path, file_name=file_name)  # type: ignore[arg-type]
+        file_content = await storage_service.get_file(flow_id=str(folder_path), file_name=file_name)
         return StreamingResponse(BytesIO(file_content), media_type=content_type)
 
     except Exception as e:
@@ -154,8 +154,8 @@ async def list_profile_pictures():
         people_path = config_path / "profile_pictures/People"
         space_path = config_path / "profile_pictures/Space"
 
-        people = await storage_service.list_files(flow_id=people_path)  # type: ignore[arg-type]
-        space = await storage_service.list_files(flow_id=space_path)  # type: ignore[arg-type]
+        people = await storage_service.list_files(flow_id=str(people_path))
+        space = await storage_service.list_files(flow_id=str(space_path))
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e)) from e

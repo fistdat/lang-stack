@@ -45,4 +45,8 @@ venv/
 # Database files
 *.db
 *.sqlite
-*.sqlite3
+*.sqlite3Energy-AI-Optimizer/BDG2-DB/eaio_energy_backup_20250813_165739.sql
+
+# Langflow files with API keys
+langflow/flow/EAIO Multi Agent System.json
+langflow/flow/EAIO Multi Agent System_v2.json

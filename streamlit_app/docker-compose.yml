@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  streamlit-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8501:8501"
+    environment:
+      - LANGFLOW_API_KEY=${LANGFLOW_API_KEY}
+      - LANGFLOW_API_URL=${LANGFLOW_API_URL:-http://host.docker.internal:7860/api/v1/run/3f229440-4079-4ee6-bcd3-341accdd9761}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - .:/app
+    restart: unless-stopped
+    networks:
+      - langflow-network
+
+  # Optional: Include Langflow service if needed
+  # langflow:
+  #   image: langflowai/langflow:latest
+  #   ports:
+  #     - "7860:7860"
+  #   environment:
+  #     - LANGFLOW_DATABASE_URL=sqlite:///./langflow.db
+  #   volumes:
+  #     - langflow_data:/app/data
+  #   restart: unless-stopped
+  #   networks:
+  #     - langflow-network
+
+networks:
+  langflow-network:
+    driver: bridge
+
+# volumes:
+#   langflow_data:
