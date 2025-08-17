@@ -15,7 +15,11 @@ streamlit
 streamlit-bokeh-events
 streamlit-folium
 streamlit-keplergl
+streamlit-echarts
 tropycal
+requests
+numpy
+pandas
 # git+https://github.com/giswqs/leafmap
 # git+https://github.com/giswqs/geemap
 
