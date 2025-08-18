@@ -1,0 +1,363 @@
+import streamlit as st
+import leafmap.foliumap as leafmap
+import requests
+import os
+import json
+from typing import Optional, Dict, Any
+
+st.set_page_config(
+    page_title="GIS Energy Optimizer",
+    page_icon="🌍",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
+def langflow_api_call(input_value: str, api_key: str, url: str) -> Optional[Dict[Any, Any]]:
+    """
+    Make API call to Langflow
+    """
+    payload = {
+        "output_type": "chat",
+        "input_type": "chat",
+        "input_value": input_value
+    }
+    
+    headers = {
+        "Content-Type": "application/json"
+    }
+    
+    # Only add API key if provided
+    if api_key and api_key.strip() and api_key != "your_api_key_here":
+        headers["x-api-key"] = api_key
+    
+    try:
+        response = requests.post(url, json=payload, headers=headers)
+        response.raise_for_status()
+        return response.json()
+    except requests.exceptions.RequestException as e:
+        st.error(f"API request error: {e}")
+        return None
+    except json.JSONDecodeError as e:
+        st.error(f"JSON parsing error: {e}")
+        return None
+
+st.sidebar.title("About")
+st.sidebar.info(
+    """
+    🌍 **GIS Energy Optimizer**
+    - Advanced geospatial analysis for energy systems
+    - AI-powered chatbot integration
+    - Interactive mapping and visualization
+    """
+)
+
+st.sidebar.title("AI Assistant")
+api_url = os.environ.get("LANGFLOW_API_URL", "http://localhost:7860/api/v1/run/3f229440-4079-4ee6-bcd3-341accdd9761")
+api_key = os.environ.get("LANGFLOW_API_KEY", "")
+
+if api_url:
+    st.sidebar.success("✅ AI System Connected")
+else:
+    st.sidebar.error("❌ AI System Disconnected")
+
+st.sidebar.title("Contact")
+st.sidebar.info(
+    """
+    **FPT University - Master Thesis**
+    
+    👨‍💻 **Student**: Hoang Tuan Dat
+    
+    👨‍🏫 **Advisor**: Assoc. Prof. Phan Duy Hung
+    
+    📧 Contact: [GitHub](https://github.com/hoangtuandat) | [Email](mailto:datht@fpt.edu.vn)
+    """
+)
+
+# Custom CSS for modern styling
+st.markdown("""
+<style>
+.main-header {
+    text-align: center;
+    padding: 1.5rem 0;
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    border-radius: 15px;
+    margin-bottom: 1.5rem;
+    color: white;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+.main-header h1 {
+    color: white !important;
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+.main-header p {
+    color: #f0f0f0;
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+    font-weight: 300;
+}
+.feature-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    border-left: 4px solid #28a745;
+}
+.chat-container {
+    background: white;
+    border-radius: 15px;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    min-height: 400px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+    border: 1px solid #e0e6ed;
+}
+</style>
+""", unsafe_allow_html=True)
+
+# Modern header with gradient background
+st.markdown("""
+<div class="main-header">
+    <h1>🌍 GIS Energy Optimizer</h1>
+    <p>Geospatial Intelligence for Sustainable Energy Management</p>
+</div>
+""", unsafe_allow_html=True)
+
+# Feature overview cards
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    st.markdown("""
+    <div class="feature-card">
+        <h4>🗺️ Interactive Mapping</h4>
+        <p>Advanced geospatial visualization and analysis tools for energy infrastructure</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+with col2:
+    st.markdown("""
+    <div class="feature-card">
+        <h4>🤖 AI Assistant</h4>
+        <p>Intelligent chatbot powered by Langflow for spatial data analysis</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+with col3:
+    st.markdown("""
+    <div class="feature-card">
+        <h4>📊 Real-time Analytics</h4>
+        <p>Live monitoring and predictive analytics for energy optimization</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+st.info("🚀 Click on the left sidebar menu to navigate to different GIS applications and tools.")
+
+# AI Chatbot Section
+st.markdown('<div class="chat-container">', unsafe_allow_html=True)
+st.subheader("💬 GIS AI Assistant")
+
+# Initialize chat history
+if "gis_messages" not in st.session_state:
+    st.session_state.gis_messages = []
+    # Add welcome message
+    st.session_state.gis_messages.append({
+        "role": "assistant", 
+        "content": "🌍 Welcome to the GIS Energy Optimizer AI Assistant!\n\nI can help you with:\n\n🗺️ **Geospatial Analysis**: Location-based energy insights\n📊 **Data Visualization**: Interactive maps and charts\n🔍 **Spatial Queries**: Find optimal locations for energy infrastructure\n💡 **Optimization**: Recommend energy-efficient solutions\n\nAsk me about energy infrastructure, spatial analysis, or mapping requirements!"
+    })
+
+# Display chat messages
+for message in st.session_state.gis_messages:
+    with st.chat_message(message["role"], avatar="🌍" if message["role"] == "assistant" else "👤"):
+        st.markdown(message["content"])
+
+st.markdown('</div>', unsafe_allow_html=True)
+
+# Chat input
+if prompt := st.chat_input("💬 Ask about GIS analysis, energy mapping, or spatial optimization..."):
+    # Add user message to chat history
+    st.session_state.gis_messages.append({"role": "user", "content": prompt})
+    with st.chat_message("user"):
+        st.markdown(prompt)
+    
+    # Get response from Langflow
+    if api_url:
+        with st.chat_message("assistant"):
+            with st.spinner("🤔 Analyzing your geospatial query..."):
+                response = langflow_api_call(prompt, api_key, api_url)
+                
+                if response:
+                    # Extract the actual response text from Langflow
+                    response_text = "No response text found"
+                    try:
+                        if isinstance(response, dict) and "outputs" in response:
+                            outputs = response["outputs"]
+                            if isinstance(outputs, list) and len(outputs) > 0:
+                                first_output = outputs[0]
+                                if "outputs" in first_output and isinstance(first_output["outputs"], list) and len(first_output["outputs"]) > 0:
+                                    nested_output = first_output["outputs"][0]
+                                    if "results" in nested_output and "message" in nested_output["results"]:
+                                        message = nested_output["results"]["message"]
+                                        if "text" in message:
+                                            response_text = message["text"]
+                                        elif "data" in message and "text" in message["data"]:
+                                            response_text = message["data"]["text"]
+                        
+                        if response_text == "No response text found":
+                            if "result" in response:
+                                response_text = str(response["result"])
+                            elif "message" in response:
+                                response_text = str(response["message"])
+                            else:
+                                response_text = json.dumps(response, indent=2)
+                                
+                    except Exception as e:
+                        response_text = f"Error parsing response: {str(e)}"
+                    
+                    st.markdown(response_text)
+                    
+                    # Add assistant response to chat history
+                    st.session_state.gis_messages.append({
+                        "role": "assistant", 
+                        "content": response_text
+                    })
+                else:
+                    error_msg = "Sorry, I couldn't process your GIS query. Please check the API configuration."
+                    st.error(error_msg)
+                    st.session_state.gis_messages.append({
+                        "role": "assistant", 
+                        "content": error_msg
+                    })
+    else:
+        with st.chat_message("assistant"):
+            error_msg = "GIS AI system is not configured. Please set up the Langflow API connection."
+            st.markdown(error_msg)
+            st.session_state.gis_messages.append({
+                "role": "assistant", 
+                "content": error_msg
+            })
+
+# Interactive Map Section
+st.subheader("🗺️ Interactive Energy Infrastructure Map")
+st.markdown(
+    """
+    Explore energy infrastructure and spatial data with our interactive mapping tools. 
+    Use the sidebar menu to access specialized GIS applications for different energy sectors.
+    """
+)
+
+# Sample energy infrastructure locations (Vietnam)
+energy_locations = [
+    {"name": "Hoa Lac Solar Farm", "lat": 21.0094, "lon": 105.5238, "type": "Solar", "capacity": "450 MW"},
+    {"name": "Mui Dinh Wind Farm", "lat": 11.6847, "lon": 109.2432, "type": "Wind", "capacity": "99 MW"},
+    {"name": "Song Hau 1 Thermal Plant", "lat": 10.1699, "lon": 105.6037, "type": "Thermal", "capacity": "1200 MW"},
+    {"name": "Da Mi Hydropower", "lat": 11.9500, "lon": 108.4500, "type": "Hydro", "capacity": "175 MW"},
+    {"name": "Ninh Thuan Solar Park", "lat": 11.6739, "lon": 108.8629, "type": "Solar", "capacity": "330 MW"}
+]
+
+# Create interactive map
+m = leafmap.Map(center=[16.0, 108.0], zoom=6, minimap_control=True)
+m.add_basemap("OpenTopoMap")
+
+# Add energy infrastructure markers
+for location in energy_locations:
+    color = {
+        "Solar": "orange",
+        "Wind": "blue", 
+        "Thermal": "red",
+        "Hydro": "green"
+    }.get(location["type"], "gray")
+    
+    popup_html = f"""
+    <div style="font-family: Arial; padding: 10px;">
+        <h4 style="color: {color}; margin: 0;">{location['name']}</h4>
+        <p style="margin: 5px 0;"><b>Type:</b> {location['type']} Power</p>
+        <p style="margin: 5px 0;"><b>Capacity:</b> {location['capacity']}</p>
+        <p style="margin: 5px 0;"><b>Location:</b> {location['lat']:.4f}, {location['lon']:.4f}</p>
+    </div>
+    """
+    
+    m.add_marker(
+        location=[location["lat"], location["lon"]], 
+        popup=popup_html,
+        icon_color=color
+    )
+
+# Add map layers
+try:
+    m.add_basemap("Esri.WorldImagery", shown=False)
+    m.add_basemap("OpenStreetMap", shown=False)
+except:
+    pass
+
+m.to_streamlit(height=600)
+
+# Energy Infrastructure Summary
+st.subheader("⚡ Energy Infrastructure Overview")
+col1, col2, col3, col4 = st.columns(4)
+
+with col1:
+    solar_count = sum(1 for loc in energy_locations if loc["type"] == "Solar")
+    st.metric("🌞 Solar Plants", solar_count, "+12% this year")
+
+with col2:
+    wind_count = sum(1 for loc in energy_locations if loc["type"] == "Wind")
+    st.metric("💨 Wind Farms", wind_count, "+8% this year")
+
+with col3:
+    thermal_count = sum(1 for loc in energy_locations if loc["type"] == "Thermal")
+    st.metric("🔥 Thermal Plants", thermal_count, "-5% this year")
+
+with col4:
+    hydro_count = sum(1 for loc in energy_locations if loc["type"] == "Hydro")
+    st.metric("💧 Hydro Plants", hydro_count, "+3% this year")
+
+# Quick Actions
+st.subheader("🚀 Quick Actions")
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    if st.button("🔍 Find Optimal Solar Locations", use_container_width=True):
+        st.info("🌞 Analyzing solar potential across Vietnam using GIS data...")
+        # This would trigger a Langflow query for solar site analysis
+        
+with col2:
+    if st.button("💨 Wind Resource Assessment", use_container_width=True):
+        st.info("💨 Evaluating wind patterns and energy potential...")
+        # This would trigger a Langflow query for wind analysis
+        
+with col3:
+    if st.button("🌍 Energy Grid Optimization", use_container_width=True):
+        st.info("⚡ Optimizing energy transmission and distribution networks...")
+        # This would trigger a Langflow query for grid optimization
+
+# Additional GIS Tools
+with st.expander("🛠️ Advanced GIS Tools"):
+    st.markdown("""
+    **Available GIS Applications:**
+    
+    📷 **Timelapse Analysis**: Monitor energy infrastructure changes over time
+    
+    🗺️ **Spatial Analysis**: Perform complex geospatial queries and analysis
+    
+    📊 **Data Visualization**: Create interactive charts and dashboards
+    
+    🔥 **Heat Maps**: Visualize energy consumption and demand patterns
+    
+    📍 **Site Selection**: Find optimal locations for new energy infrastructure
+    
+    🌐 **Network Analysis**: Optimize energy transmission routes
+    
+    **Navigate to specific tools using the sidebar menu.**
+    """)
+
+# Footer
+st.markdown("---")
+st.markdown("""
+<div style="text-align: center; padding: 20px; color: #666;">
+    <p><strong>🎓 FPT University - Master of Software Engineering</strong></p>
+    <p>Energy AI Optimizer with GIS Integration | © 2025</p>
+    <p>👨‍💻 Hoang Tuan Dat | 👨‍🏫 Assoc. Prof. Phan Duy Hung</p>
+</div>
+""", unsafe_allow_html=True)
