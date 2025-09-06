@@ -32,7 +32,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-def generate_sample_energy_data():
+def generate_sample_energy_data(start_date='2024-01-01', num_months=6):
     """Generate sample energy consumption data for 5 buildings"""
     buildings = [
         'Hog_education_Janell', 
@@ -42,8 +42,8 @@ def generate_sample_energy_data():
         'Bear_education_Wilton'
     ]
     
-    # Generate 6 months of data
-    months = pd.date_range(start='2024-01-01', periods=6, freq='ME')
+    # Generate months of data based on parameters
+    months = pd.date_range(start=start_date, periods=num_months, freq='ME')
     
     # Sample consumption data (kWh) with realistic trends
     np.random.seed(42)
@@ -363,10 +363,10 @@ def main():
     
     # Sidebar for configuration and controls
     with st.sidebar:
-        st.title("🔧 EAIO System")
+        st.title("EAIO System")
         
         # Connection status
-        st.subheader("📡 Connection Status")
+        st.subheader("Connection Status")
         api_url = os.environ.get("LANGFLOW_API_URL", "")
         if api_url:
             st.success("✅ AI System Connected")
@@ -378,7 +378,7 @@ def main():
         st.divider()
         
         # Chat controls
-        st.subheader("💬 Chat Controls")
+        st.subheader("Chat Controls")
         col1, col2 = st.columns(2)
         with col1:
             if st.button("🗑️ Clear Chat", use_container_width=True):
@@ -391,7 +391,7 @@ def main():
         st.divider()
         
         # Display mode selection
-        st.subheader("🎛️ Display Mode")
+        st.subheader("Display Mode")
         display_mode = st.radio(
             "Select primary focus:",
             options=["EAIO Chatbot", "GIS Map + Chat"],
@@ -401,38 +401,38 @@ def main():
         st.session_state.display_mode = display_mode
         
         # Chart type selection
-        st.subheader("📊 Chart Engine")
-        chart_type = st.selectbox(
-            "Choose visualization:",
-            options=["plotly", "echarts"],
-            format_func=lambda x: "📈 Plotly Charts" if x == "plotly" else "🎨 ECharts"
-        )
-        st.session_state.chart_engine = chart_type
+        # st.subheader("Chart Engine")
+        # chart_type = st.selectbox(
+        #     "Choose visualization:",
+        #     options=["plotly", "echarts"],
+        #     format_func=lambda x: "📈 Plotly Charts" if x == "plotly" else "🎨 ECharts"
+        # )
+        # st.session_state.chart_engine = chart_type
         
-        st.divider()
+        # st.divider()
         
         # Quick actions
-        st.subheader("⚡ Quick Actions")
-        if st.button("📊 Top 5 Energy Consumers", use_container_width=True):
+        st.subheader("Quick Actions")
+        if st.button("Top 5 Energy Consumers", use_container_width=True):
             st.session_state.quick_prompt = "Liệt kê 5 tòa nhà tiêu thụ điện nhiều nhất"
             st.session_state.show_chart = "comparison"
-        if st.button("💡 Optimization Tips", use_container_width=True):
+        if st.button("Optimization Tips", use_container_width=True):
             st.session_state.quick_prompt = "Đưa ra 3 đề xuất tối ưu hóa năng lượng"
-        if st.button("📈 Energy Trends", use_container_width=True):
+        if st.button("Energy Trends", use_container_width=True):
             st.session_state.quick_prompt = "Phân tích xu hướng tiêu thụ năng lượng"
             st.session_state.show_chart = "trend"
-        if st.button("🗺️ Show GIS Infrastructure", use_container_width=True):
-            st.session_state.quick_prompt = "Hiển thị bản đồ cơ sở hạ tầng năng lượng Việt Nam"
+        if st.button("ESG Analysis", use_container_width=True):
+            st.session_state.quick_prompt = "đề xuất xu hướng chiến lược ESG cho các toà nhà trên"
             st.session_state.show_gis = True
         
         st.divider()
         
         # About section
-        st.subheader("ℹ️ About")
-        st.caption("🎓 **FPT University**")
-        st.caption("📝 Master Thesis Project")
-        st.caption("👨‍💻 Hoang Tuan Dat")
-        st.caption("👨‍🏫 Assoc. Prof. Phan Duy Hung")
+        st.subheader("About")
+        st.caption("**FPT University**")
+        st.caption("Master Thesis Project")
+        st.caption("Hoang Tuan Dat")
+        st.caption("Assoc. Prof. Phan Duy Hung")
         st.caption("© 2025")
 
     # Modern header with gradient background
@@ -469,7 +469,7 @@ def main():
                 components.html(map_html, height=700)  # Increased from 600 to 700
     else:
         # Main chat interface - removed example queries
-        st.subheader("🤖 EAIO Assistant Chat")
+        st.subheader("EAIO Assistant Chat")
         render_chat_interface(api_url, api_key)
 
 def render_chat_interface(api_url, api_key):
@@ -480,7 +480,7 @@ def render_chat_interface(api_url, api_key):
         # Add welcome message
         st.session_state.messages.append({
             "role": "assistant", 
-            "content": "👋 Chào mừng bạn đến với Energy AI Optimizer (EAIO)!\n\nTôi là AI assistant chuyên về phân tích và tối ưu hóa năng lượng tòa nhà. Tôi có thể giúp bạn:\n\n🔍 **Phân tích dữ liệu**: Xem xét các mẫu tiêu thụ năng lượng\n💡 **Đề xuất tối ưu**: Cải thiện hiệu suất năng lượng\n📊 **Báo cáo chi tiết**: Thống kê và xu hướng\n🏢 **So sánh tòa nhà**: Đánh giá hiệu suất tương đối\n🗺️ **Hiển thị GIS**: Bản đồ cơ sở hạ tầng năng lượng\n\nHãy bắt đầu bằng cách hỏi tôi về năng lượng tòa nhà của bạn!"
+            "content": "Chào mừng bạn đến với Energy AI Optimizer (EAIO)!\n\nTôi là AI assistant chuyên về phân tích và tối ưu hóa năng lượng tòa nhà. Tôi có thể giúp bạn:\n\n **- Phân tích dữ liệu**: Xem xét các mẫu tiêu thụ năng lượng\n\n **- Đề xuất tối ưu**: Cải thiện hiệu suất năng lượng\n\n **- Báo cáo chi tiết**: Thống kê và xu hướng\n\n **- So sánh tòa nhà**: Đánh giá hiệu suất tương đối\n\nHãy bắt đầu bằng cách hỏi tôi về năng lượng tòa nhà của bạn!"
         })
     
     # Display chat messages
@@ -607,7 +607,36 @@ def process_user_input(prompt, api_url, api_key):
 
 def show_energy_charts(prompt):
     """Show energy consumption charts"""
-    df = generate_sample_energy_data()
+    # Parse prompt for date and period information
+    start_date = '2024-01-01'  # default
+    num_months = 6  # default
+    
+    # Extract date information from prompt
+    import re
+    
+    # Look for date patterns like "1/1/2016", "01/01/2016", "2016-01-01"
+    date_patterns = [
+        r'(\d{1,2})/(\d{1,2})/(\d{4})',  # 1/1/2016 or 01/01/2016
+        r'(\d{4})-(\d{1,2})-(\d{1,2})',  # 2016-01-01
+    ]
+    
+    for pattern in date_patterns:
+        match = re.search(pattern, prompt)
+        if match:
+            if '/' in pattern:  # MM/DD/YYYY format
+                month, day, year = match.groups()
+                start_date = f'{year}-{month.zfill(2)}-{day.zfill(2)}'
+            else:  # YYYY-MM-DD format
+                year, month, day = match.groups()
+                start_date = f'{year}-{month.zfill(2)}-{day.zfill(2)}'
+            break
+    
+    # Look for period information like "3 tháng", "3 months"
+    period_match = re.search(r'(\d+)\s*(?:tháng|months?)', prompt.lower())
+    if period_match:
+        num_months = int(period_match.group(1))
+    
+    df = generate_sample_energy_data(start_date, num_months)
     chart_engine = getattr(st.session_state, 'chart_engine', 'plotly')
     
     if any(word in prompt.lower() for word in ["xu hướng", "trend", "biểu đồ"]):

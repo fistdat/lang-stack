@@ -1,32 +1,613 @@
 # EAIO Stakeholder Agentic Workflows Analysis
 
 ## Overview
-This document analyzes user questions by stakeholder groups and designs multi-agent workflows for the Energy AI Optimizer (EAIO) system. Based on the stakeholder analysis and available database queries, we define specific use cases and agentic workflows to serve each stakeholder group effectively.
+This document defines multi-agent workflows for the Energy AI Optimizer (EAIO) system based on 10 specific requirement scenarios. Each requirement has been analyzed to determine the optimal agent coordination patterns and implementation strategies for maximum energy optimization effectiveness.
 
-  Building Owners/Property Managers (15 câu hỏi chi tiết):
-  - Financial Performance: 5 câu hỏi với agent mapping và SQL queries cụ thể
-  - Strategic Planning: 5 câu hỏi với ROI analysis và benchmarking
-  - Compliance & Reporting: 5 câu hỏi với regulatory và ESG reporting
+## Requirements-Based Use Cases
 
-  Energy/Sustainability Consultants (15 câu hỏi chi tiết):
-  - Technical Analysis: 5 câu hỏi với comprehensive audit và correlation analysis
-  - Advanced Optimization: 5 câu hỏi với demand response và renewable integration
-  - Validation & Verification: 5 câu hỏi với IPMVP protocols và uncertainty analysis
+Based on the detailed requirement analysis, the EAIO system addresses 10 core optimization scenarios:
 
-  Mỗi câu hỏi đều có:
-  - Agent Mapping: Xác định agent chính và phụ trợ
-  - Query Mapping: Tham chiếu đến queries trong agent_database_queries.md
-  - SQL Code: Snippets của primary queries được sử dụng
+1. **Tối Ưu Hóa Lịch Trình Hoạt Động HVAC** - HVAC schedule optimization for energy savings
+2. **Phản Ứng Nhanh Với Bất Thường Năng Lượng** - Rapid response to energy anomalies  
+3. **Phân Tích Tương Quan Tiêu Thụ Năng Lượng - Thời Tiết** - Weather-energy correlation analysis
+4. **So Sánh Hiệu Quả Năng Lượng Giữa Các Tòa Nhà** - Building performance benchmarking
+5. **Báo Cáo Hiệu Quả Tài Chính Của Các Sáng Kiến Năng Lượng** - Financial performance reporting
+6. **Lập Kế Hoạch Ngân Sách Năng Lượng Dài Hạn** - Long-term energy budget planning
+7. **Phân Tích Mẫu Tiêu Thụ Theo Thời Gian** - Time-based consumption pattern analysis
+8. **Theo Dõi Tiến Độ Và Hiệu Quả Sau Triển Khai** - Post-implementation progress tracking
+9. **Phân Tích Toàn Diện Hiệu Suất Năng Lượng Tòa Nhà** - Comprehensive building energy performance analysis
+10. **Lập Kế Hoạch Đạt Carbon Net Zero** - Carbon net zero planning
 
-  Total: 45 câu hỏi chi tiết với mapping hoàn chỉnh cho cả 3 nhóm stakeholders.
+## Agent Architecture Summary
+
+The system employs 7 specialized agents coordinated through comprehensive workflows to address each requirement scenario effectively.
 
 ---
 
-## 1. Stakeholder-Specific User Questions Analysis
+## 1. Requirement-Based Agent Workflows
 
-### 1.1 Facility Managers Questions
+### 1.1 Requirement #1: Tối Ưu Hóa Lịch Trình Hoạt Động HVAC
 
-#### Operational Monitoring Questions:
+**Tình Huống**: Quản lý cơ sở muốn điều chỉnh lịch trình hoạt động hệ thống HVAC để giảm tiêu thụ năng lượng mà không ảnh hưởng đến thoải mái của người dùng.
+
+**Tương Tác Mẫu**:
+- Quản lý: "Tối muốn tối ưu hóa lịch trình HVAC cho tòa nhà A. Có gợi ý nào không?"
+- Trợ lý: "Dựa trên phân tích dữ liệu tiêu thụ 30 ngày qua và mẫu sử dụng tòa nhà, tôi khuyến nghị..."
+
+**Agent Coordination Workflow**:
+```mermaid
+sequenceDiagram
+    participant User as Facility Manager
+    participant Coord as Coordinator Agent
+    participant Data as DataAnalysisAgent
+    participant Adapter as AdapterAgent
+    participant Forecast as ForecastingAgent
+    participant Rec as RecommendationAgent
+    participant DB as Database
+    
+    User->>Coord: "Optimize HVAC schedule for Building A"
+    Coord->>Data: Analyze 30-day consumption patterns
+    Data->>DB: Query: Historical HVAC consumption & occupancy
+    DB-->>Data: Time-series data with patterns
+    Data-->>Coord: Peak usage: 7AM-6PM, Low: nights/weekends
+    
+    Coord->>Adapter: Get building context & constraints  
+    Adapter->>DB: Query: Building info & HVAC capabilities
+    DB-->>Adapter: Building metadata & system specs
+    Adapter-->>Coord: HVAC system supports scheduling
+    
+    Coord->>Forecast: Predict energy savings from schedule optimization
+    Forecast->>DB: Query: Weather patterns & demand forecasting
+    DB-->>Forecast: Seasonal patterns & efficiency projections
+    Forecast-->>Coord: Potential 15-18% energy savings
+    
+    Coord->>Rec: Generate optimal HVAC schedule
+    Rec-->>Coord: Recommended schedule with comfort constraints
+    Coord-->>User: "Optimization complete: Start HVAC at 6AM instead of 5AM (save 5.2%), reduce night cooling 16:30-18:00, optimize peak hours 11-14:00, enable cooling mode on Saturdays"
+```
+
+**Expected Outcomes**:
+1. Giảm tiêu thụ cơ sở đêm ~25% qua kiểm soát thiết bị không thiết yếu
+2. Điều chỉnh lịch trình HVAC cho cuối tuần thứ Hai sau cuối tuần
+3. Thực hiện quan lý phụ tải chủ động trong cao điểm mùa hè
+4. Điều chỉnh các hoạt động tiêu thụ cao sang giờ thấp điểm
+
+### 1.2 Requirement #2: Phản Ứng Nhanh Với Bất Thường Năng Lượng
+
+**Tình Huống**: Phát hiện mức tiêu thụ điện đột biến bất thường trong tòa nhà cần được xử lý ngay lập tức.
+
+**Tương Tác Mẫu**:
+- Quản lý: "Tôi thấy có thông báo về mức tiêu thụ điện bất thường. Đó là gì và phải làm gì?"
+- Trợ lý: "Phát hiện mức tiêu thụ điện cao bất thường (+45% so với bình thường) tại tầng 3 từ 22:00 tối qua đến 6:00 sáng nay..."
+
+**Agent Coordination Workflow**:
+```mermaid
+sequenceDiagram
+    participant System as Monitoring System
+    participant Coord as Coordinator Agent
+    participant Data as DataAnalysisAgent
+    participant Adapter as AdapterAgent
+    participant Rec as RecommendationAgent
+    participant Eval as EvaluatorAgent
+    participant User as Facility Manager
+    participant DB as Database
+    
+    System->>Coord: ALERT: Abnormal energy consumption detected
+    Coord->>Data: Analyze consumption anomaly
+    Data->>DB: Query: Real-time consumption vs baseline
+    DB-->>Data: 45% increase at Floor 3, 22:00-06:00
+    Data-->>Coord: Anomaly: HVAC system overconsumption
+    
+    Coord->>Adapter: Check system status & equipment health
+    Adapter->>DB: Query: HVAC system diagnostics
+    DB-->>Adapter: Potential BMS configuration issue
+    Adapter-->>Coord: HVAC running in full mode unnecessarily
+    
+    Coord->>Rec: Generate immediate response actions
+    Rec-->>Coord: 1. Check HVAC schedule at Floor 3, 2. Adjust thermostat settings, 3. Check sensor calibration
+    
+    Coord->>Eval: Estimate financial impact
+    Eval->>DB: Query: Cost calculation & impact assessment
+    DB-->>Eval: Estimated extra cost: 1.2 million VND/month
+    Eval-->>Coord: High financial impact - immediate action needed
+    
+    Coord->>User: "ANOMALY ALERT: Floor 3 overconsumption detected. Recommended actions: 1. Check HVAC schedule, 2. Adjust thermostat, 3. Verify sensor calibration. Potential monthly cost: 1.2M VND"
+```
+
+**Expected Outcomes**:
+- Kiểm tra ngay cài đặt lịch trình HVAC tại tầng 3
+- Điều chỉnh bộ hẹn giờ và xác nhận cài đặt tự động  
+- Kiểm tra cảm biến hiện diện và nhiệt độ trong khu vực
+- Nếu được khắc phục ngay, có thể tiết kiệm khoảng 1.2 triệu đồng tiền điện mỗi tháng
+
+### 1.3 Requirement #3: Phân Tích Tương Quan Tiêu Thụ Năng Lượng - Thời Tiết
+
+**Tình Huống**: Nhà phân tích năng lượng muốn hiểu chi tiết về mối tương quan giữa điều kiện thời tiết và tiêu thụ năng lượng của tòa nhà.
+
+**Tương Tác Mẫu**:
+- Phân tích viên: "Phân tích mối tương quan giữa nhiệt độ ngoài trời và tiêu thụ điện của tòa nhà trong 3 tháng qua."
+- Trợ lý: "Phân tích tương quan giữa nhiệt độ ngoài trời và tiêu thụ điện cho tháy..."
+
+**Agent Coordination Workflow**:
+```mermaid
+sequenceDiagram
+    participant User as Energy Analyst
+    participant Coord as Coordinator Agent
+    participant Adapter as AdapterAgent
+    participant Data as DataAnalysisAgent  
+    participant Forecast as ForecastingAgent
+    participant Rec as RecommendationAgent
+    participant DB as Database
+    
+    User->>Coord: "Analyze weather-energy correlation for past 3 months"
+    Coord->>Adapter: Collect weather & energy data
+    Adapter->>DB: Query: Weather data + energy consumption (3 months)
+    DB-->>Adapter: Temperature, humidity, consumption time-series
+    Adapter-->>Coord: Data prepared for correlation analysis
+    
+    Coord->>Data: Perform correlation analysis
+    Data->>DB: Query: Statistical correlation calculations
+    DB-->>Data: Correlation coefficients & patterns
+    Data-->>Coord: Strong correlation (0.83) between temperature & consumption
+    
+    Coord->>Forecast: Forecast consumption based on weather patterns
+    Forecast->>DB: Query: Weather predictions & demand modeling
+    DB-->>Forecast: 4.2% increase per 1°C temperature rise
+    Forecast-->>Coord: Weather sensitivity factor calculated
+    
+    Coord->>Rec: Generate weather-based optimization recommendations
+    Rec-->>Coord: 1. Pre-cool building during weather forecasts >28°C, 2. Implement thermal storage strategy, 3. Adjust AHU setpoints based on outdoor conditions
+    
+    Coord-->>User: "Weather-Energy Correlation Analysis Complete: Strong correlation (0.83), 4.2% consumption increase per 1°C rise. Recommendations: Pre-cooling strategy, thermal storage, adaptive AHU control"
+```
+
+**Expected Outcomes**:
+1. Tối ưu hóa điều cài đặt HVAC dựa trên dự báo thời tiết 48 giờ
+2. Triển khai chiến lược tiền làm mát với nhiệt độ ngoài trời dự kiến >30°C
+3. Điều chỉnh biến tần AHU sớm trước giờ cao điểm theo nhiệt độ ngoài trời
+
+### 1.4 Requirement #4: So Sánh Hiệu Quả Năng Lượng Giữa Các Tòa Nhà
+
+**Tình Huống**: Cần so sánh hiệu quả năng lượng giữa nhiều tòa nhà trong danh mục đầu tư để xác định cơ hội cải thiện.
+
+**Tương Tác Mẫu**:
+- Phân tích viên: "So sánh hiệu quả năng lượng giữa tòa nhà A, B và C trong quý vừa qua."
+- Trợ lý: "Phân tích so sánh hiệu quả năng lượng của 3 tòa nhà trong Q2/2025..."
+
+**Agent Coordination Workflow**:
+```mermaid
+sequenceDiagram
+    participant User as Portfolio Manager
+    participant Coord as Coordinator Agent
+    participant Data as DataAnalysisAgent
+    participant Memory as MemoryAgent
+    participant Eval as EvaluatorAgent
+    participant Rec as RecommendationAgent
+    participant DB as Database
+    
+    User->>Coord: "Compare energy efficiency between Buildings A, B, C"
+    Coord->>Data: Analyze performance metrics for 3 buildings
+    Data->>DB: Query: EUI, consumption, efficiency metrics (Q2/2025)
+    DB-->>Data: Building A: 182.3 kWh/m²/năm, B: 156.7, C: 215.8
+    Data-->>Coord: Performance ranking: B > A > C
+    
+    Coord->>Memory: Store historical context & benchmarks
+    Memory->>DB: Query: Historical performance trends
+    DB-->>Memory: Performance trends & improvement opportunities
+    Memory-->>Coord: Context established for comparison
+    
+    Coord->>Eval: Evaluate efficiency and ROI potential
+    Eval->>DB: Query: Cost analysis & improvement potential
+    DB-->>Eval: Building B: best performer, C: highest savings potential
+    Eval-->>Coord: Building C needs priority intervention
+    
+    Coord->>Rec: Generate improvement recommendations
+    Rec-->>Coord: Building C: Upgrade window systems (ROI: 24 months), Building A: LED transition (ROI: 18 months), Building C: Implement building management system (ROI: 15 months)
+    
+    Coord-->>User: "Building Efficiency Comparison Complete. Building B: Most efficient (COP 4.2), Building C: Needs immediate attention (overheating issues, 8.3% above baseline). Priority recommendations: Building C infrastructure upgrade, Building A LED conversion"
+```
+
+**Expected Outcomes**:
+- Tòa nhà B có COP trung bình cao nhất: 4.2
+- Tòa nhà C có tỷ lệ thất thoát nhiệt cao qua cửa số đơn lớp  
+- Tòa nhà A sử dụng biến tần tiết kiệm 8.3% so với Q1
+
+### 1.5 Requirement #5: Báo Cáo Hiệu Quả Tài Chính Của Các Sáng Kiến Năng Lượng
+
+**Tình Huống**: Lãnh đạo cần báo cáo tổng quan về hiệu quả tài chính của các sáng kiến năng lượng đã triển khai.
+
+**Tương Tác Mẫu**:
+- Giám đốc: "Tôi cần hiệu quả tài chính các dự án năng lượng triển khai trong 6 tháng qua."
+- Trợ lý: "Báo cáo hiệu quả tài chính các sáng kiến năng lượng (6 tháng qua)..."
+
+**Agent Coordination Workflow**:
+```mermaid
+sequenceDiagram
+    participant User as Executive
+    participant Coord as Coordinator Agent
+    participant Eval as EvaluatorAgent
+    participant Memory as MemoryAgent
+    participant Data as DataAnalysisAgent
+    participant Rec as RecommendationAgent
+    participant DB as Database
+    
+    User->>Coord: "Report financial effectiveness of energy initiatives (6 months)"
+    Coord->>Eval: Calculate ROI and financial metrics
+    Eval->>DB: Query: Investment costs, savings, ROI calculations
+    DB-->>Eval: Total investment: 425M VND, Savings: 212M VND, ROI: 99.8%
+    Eval-->>Coord: Strong financial performance - 12.1 month payback
+    
+    Coord->>Memory: Retrieve historical context & project details
+    Memory->>DB: Query: Project implementation history
+    DB-->>Memory: LED upgrade, HVAC optimization, building management system
+    Memory-->>Coord: 3 major initiatives tracked
+    
+    Coord->>Data: Analyze performance by initiative type
+    Data->>DB: Query: Performance by project type
+    DB-->>Data: LED: 103.8% ROI, HVAC: 104% ROI, BMS: 84.4% ROI
+    Data-->>Coord: All initiatives exceeding target ROI
+    
+    Coord->>Rec: Generate strategic next steps
+    Rec-->>Coord: Expand LED to remaining buildings (ROI: 110%), Install solar panels (ROI: 85-15 years), Upgrade building management AI (ROI: 95-16 years)
+    
+    Coord-->>User: "Financial Performance Report: Total ROI 99.8% (12 months), CO2 reduction: 105 tons. Next phase recommendations: LED expansion, solar panels, AI management system upgrade"
+```
+
+**Expected Outcomes**:
+1. Nâng cấp LED
+   - Đầu tư: 185 triệu đồng
+   - Tiết kiệm: 96 triệu đồng (6 tháng)  
+   - ROI: 103.8% (12 tháng)
+   - Hiệu suất cao hơn kỳ vọng 15%
+
+2. Tối ưu hóa HVAC
+   - Đầu tư: 150 triệu đồng
+   - Tiết kiệm: 78 triệu đồng (6 tháng)
+   - ROI: 104% (12 tháng)
+   - Theo đúng kỳ vọng
+
+3. Hệ thống quản lý năng lượng tòa nhà
+   - Đầu tư: 90 triệu đồng
+   - Tiết kiệm: 38 triệu đồng (6 tháng)
+   - ROI: 84.4% (12 tháng)
+   - Thấp hơn kỳ vọng 8% do thời gian đào tạo kéo dài
+
+### 1.6 Requirement #6: Lập Kế Hoạch Ngân Sách Năng Lượng Dài Hạn
+
+**Tình Huống**: Lãnh đạo cần dự báo chi phí năng lượng cho năm tới và đề xuất phân bổ ngân sách tối ưu.
+
+**Tương Tác Mẫu**:
+- Giám đốc: "Dự báo chi phí năng lượng cho năm tới và đề xuất phân bổ ngân sách tối ưu."
+- Trợ lý: "Dự báo chi phí năng lượng cho FY2026 và đề xuất phân bổ ngân sách..."
+
+**Agent Coordination Workflow**:
+```mermaid
+sequenceDiagram
+    participant User as Executive
+    participant Coord as Coordinator Agent
+    participant Forecast as ForecastingAgent
+    participant Adapter as AdapterAgent
+    participant Rec as RecommendationAgent
+    participant Eval as EvaluatorAgent
+    participant DB as Database
+    
+    User->>Coord: "Forecast energy costs and optimize budget allocation for FY2026"
+    Coord->>Forecast: Predict energy cost trends
+    Forecast->>DB: Query: Historical costs, price trends, demand forecasting
+    DB-->>Forecast: Electricity: +4.5% increase, Gas: +5.2% increase, Peak demand pricing impact
+    Forecast-->>Coord: Total cost increase: 1.82 billion VND (+7.5% vs FY2025)
+    
+    Coord->>Adapter: Analyze market & regulatory changes
+    Adapter->>DB: Query: Energy market trends, policy changes
+    DB-->>Adapter: Carbon tax: +18% cost impact, Renewable incentives available
+    Adapter-->>Coord: Policy factors identified
+    
+    Coord->>Rec: Generate budget optimization recommendations
+    Rec-->>Coord: 1. Operating costs: 1.45B VND, 2. Efficiency projects: 255M VND, 3. Optimization investment: 550M VND (ROI <24 months)
+    
+    Coord->>Eval: Calculate ROI and financial projections
+    Eval->>DB: Query: Investment analysis & cost-benefit calculations
+    DB-->>Eval: Net savings potential: 18.5% cost reduction, Total ROI: 86% (12 months)
+    Eval-->>Coord: Strong investment case validated
+    
+    Coord-->>User: "FY2026 Energy Budget Forecast: 1.82B VND base cost (+7.5%). Recommended allocation: 1.45B operations, 255M efficiency projects, 550M optimization investment. Expected savings: 18.5% through strategic investments"
+```
+
+**Expected Outcomes**:
+**Dự báo chi phí cơ sở**:
+- Tổng chi phí điện: 1.82 tỷ đồng (+7.5% so với FY2025)
+- Tổng chi phí gas: 420 triệu đồng (+5.2% so với FY2025)  
+- Chi phí định điểm: 552 triệu đồng (+12.3% do tăng giá giờ cao điểm)
+
+**Yếu tố tác động chính**:
+- Tăng giá điện dự kiến: +4.5% (Q3/2025)
+- Dự báo mùa hè nóng hơn 1.8°C so với 2025
+- Mở rộng quy định sử dụng tăng 5: +18% điện tích sử dụng
+
+### 1.7 Requirement #7: Phân Tích Mẫu Tiêu Thụ Theo Thời Gian
+
+**Tình Huống**: Cần hiểu rõ mẫu tiêu thụ năng lượng theo thời gian để phát hiện cơ hội tối ưu hóa.
+
+**Tương Tác Mẫu**:
+- Người dùng: "Phân tích xu hướng tiêu thụ điện hàng ngày, hàng tuần và theo mùa cho tòa nhà này."
+- Trợ lý: "Phân tích xu hướng tiêu thụ điện cho tòa nhà..."
+
+**Agent Coordination Workflow**:
+```mermaid
+sequenceDiagram
+    participant User as Facility Manager
+    participant Coord as Coordinator Agent
+    participant Data as DataAnalysisAgent
+    participant Forecast as ForecastingAgent
+    participant Rec as RecommendationAgent
+    participant Memory as MemoryAgent
+    participant DB as Database
+    
+    User->>Coord: "Analyze consumption patterns: daily, weekly, seasonal for building"
+    Coord->>Data: Analyze consumption patterns across time periods
+    Data->>DB: Query: Hourly, daily, weekly consumption patterns
+    DB-->>Data: Peak hours: 9-11AM, 2-4PM, Weekend patterns, Seasonal variations
+    Data-->>Coord: Clear time-based patterns identified
+    
+    Coord->>Forecast: Predict future consumption patterns
+    Forecast->>DB: Query: Pattern forecasting and seasonal adjustments
+    DB-->>Forecast: Summer peak +32% vs average, Winter low -18% vs average
+    Forecast-->>Coord: Seasonal forecasting models ready
+    
+    Coord->>Memory: Store pattern insights for optimization
+    Memory->>DB: Query: Historical pattern effectiveness
+    DB-->>Memory: Previous optimizations and their success rates
+    Memory-->>Coord: Pattern-based optimization history available
+    
+    Coord->>Rec: Generate time-based optimization recommendations
+    Rec-->>Coord: 1. Pre-cooling during 6-8AM (+32% efficiency), 2. Load shifting to off-peak hours, 3. Weekend schedule optimization, 4. Seasonal HVAC adjustments
+    
+    Coord-->>User: "Time Pattern Analysis Complete: Peak consumption 9-11AM & 2-4PM. Summer +32% vs winter. Recommendations: Pre-cooling strategy, load shifting, seasonal HVAC optimization. Potential 15-20% energy savings"
+```
+
+**Expected Outcomes**:
+**Mẫu Hàng Ngày**:
+- Cao điểm chính: 9:00-11:00 (mức tiêu thụ +42% so với trung bình)
+- Cao điểm phụ: 14:00-16:00 (+35% so với trung bình)  
+- Điểm thấp: 1:00-4:00 sáng (-65% so với trung bình)
+- Tiêu thụ cơ sở đêm: ~35kW (chủ yếu từ máy chủ, an ninh, và HVAC bảo trì)
+- Tỷ lệ ngày/đêm: 3.8:1
+
+**Mẫu Hàng Tuần**:
+- Ngày tiêu thụ cao nhất: Thứ Ba (+12% so với trung bình tuần)
+- Ngày tiêu thụ thấp nhất: Chủ Nhật (-52% so với trung bình tuần)
+- Tỷ lệ ngày làm việc/cuối tuần: 2.7:1
+- Đặc điểm nổi bật: Các cuộc họp sáng thứ Hai tạo đỉnh tiêu thụ +15%
+
+### 1.8 Requirement #8: Theo Dõi Tiến Độ Và Hiệu Quả Sau Triển Khai
+
+**Tình Huống**: Cần theo dõi hiệu quả của các biện pháp tối ưu hóa năng lượng sau khi triển khai.
+
+**Tương Tác Mẫu**:
+- Người dùng: "Đánh giá hiệu quả của biện pháp tối ưu hóa HVAC sau 30 ngày triển khai."
+- Trợ lý: "Đánh giá hiệu quả tối ưu hóa HVAC sau 30 ngày..."
+
+**Agent Coordination Workflow**:
+```mermaid
+sequenceDiagram
+    participant User as Project Manager
+    participant Coord as Coordinator Agent
+    participant Eval as EvaluatorAgent
+    participant Data as DataAnalysisAgent
+    participant Memory as MemoryAgent
+    participant Rec as RecommendationAgent
+    participant DB as Database
+    
+    User->>Coord: "Evaluate HVAC optimization effectiveness after 30 days"
+    Coord->>Eval: Assess implementation results
+    Eval->>DB: Query: Pre vs post implementation metrics
+    DB-->>Eval: 92% completion rate, 15.3% actual energy savings, 27.8M VND cost savings
+    Eval-->>Coord: Implementation successful, meeting technical targets
+    
+    Coord->>Data: Analyze detailed performance metrics
+    Data->>DB: Query: System performance & efficiency comparisons
+    DB-->>Data: Target vs actual performance analysis
+    Data-->>Coord: Performance meets expectations with 94.7% target achievement
+    
+    Coord->>Memory: Store implementation lessons learned
+    Memory->>DB: Query: Best practices & implementation insights
+    DB-->>Memory: Success factors and improvement opportunities documented
+    Memory-->>Coord: Implementation knowledge captured
+    
+    Coord->>Rec: Generate supplementary improvements
+    Rec-->>Coord: 1. Early cooling optimization (save 15 minutes), 2. Sensor calibration adjustments, 3. Additional wind flow control based on CO2 levels
+    
+    Coord-->>User: "30-Day HVAC Optimization Review: 92% implementation success, 15.3% energy savings achieved, 27.8M VND saved. Recommendations: Fine-tune cooling schedule, calibrate sensors, implement CO2-based ventilation control"
+```
+
+**Expected Outcomes**:
+**Tổng quan thực hiện**:
+- Mức độ hoàn thành: 92% (23/25 điểm điều khiển đã được tối ưu)
+- Chất lượng triển khai: Tốt (đạt tiêu chuẩn kỹ thuật)
+- Vấn đề gặp phải: 2 bộ điều khiển VAV cần thay thế
+
+**Kết quả tiết kiệm năng lượng**:
+- Tiết kiệm thực tế: 15.3% tiêu thụ HVAC
+- So với dự kiến: 94.7% mục tiêu ban đầu (dự kiến 16.2%)
+- Tiết kiệm chi phí: 27.8 triệu đồng/tháng
+- Giảm phát thải CO2: 6.2 tấn/tháng
+
+### 1.9 Requirement #9: Phân Tích Toàn Diện Hiệu Suất Năng Lượng Tòa Nhà
+
+**Tình Huống**: Cần đánh giá toàn diện hiệu suất năng lượng của tòa nhà và xác định cơ hội cải thiện.
+
+**Tương Tác Mẫu**:
+- Người dùng: "Đánh giá toàn diện hiệu quả năng lượng tòa nhà và đề xuất kế hoạch cải thiện."
+- Trợ lý: "Đánh giá toàn diện hiệu quả năng lượng tòa nhà..."
+
+**Agent Coordination Workflow**:
+```mermaid
+sequenceDiagram
+    participant User as Building Manager
+    participant Coord as Coordinator Agent
+    participant Data as DataAnalysisAgent
+    participant Rec as RecommendationAgent
+    participant Forecast as ForecastingAgent
+    participant Eval as EvaluatorAgent
+    participant Memory as MemoryAgent
+    participant Command as CommanderAgent
+    participant DB as Database
+    
+    User->>Coord: "Comprehensive building energy performance assessment"
+    
+    par Multi-Agent Analysis
+        Coord->>Data: Analyze comprehensive energy performance
+        Data->>DB: Query: EUI, consumption patterns, system efficiency
+        DB-->>Data: Current EUI: 174 kWh/m²/năm, EnergyStar: 68/100
+        
+        Coord->>Forecast: Predict optimization potential
+        Forecast->>DB: Query: Optimization scenarios & projections
+        DB-->>Forecast: 30-38% savings potential, ROI 5 năm: 224%
+        
+        Coord->>Eval: Evaluate current performance & ROI
+        Eval->>DB: Query: Benchmark analysis & financial assessment
+        DB-->>Eval: Below industry standard, high improvement potential
+    end
+    
+    Coord->>Rec: Generate comprehensive improvement plan
+    Rec-->>Coord: Multi-phase improvement strategy with timelines
+    
+    Coord->>Memory: Store analysis for continuous monitoring
+    Memory-->>Coord: Analysis stored for tracking progress
+    
+    Coord->>Command: Coordinate implementation planning
+    Command-->>Coord: Implementation roadmap with resource allocation
+    
+    Coord-->>User: "Comprehensive Assessment Complete: Current EUI 174 kWh/m² (23% above standard). 3-phase improvement plan: Short-term (8-12 months, ROI >100%), Medium-term (12-24 months, ROI 50-100%), Long-term (24-48 months, ROI 25-50%). Total savings potential: 32-38%, Investment payback: 5 years"
+```
+
+**Expected Outcomes**:
+**Hiện trạng (so với chuẩn ngành)**:
+- Cường độ năng lượng: 174 kWh/m²/năm (cao hơn 23% so với chuẩn ngành)
+- Xếp hạng EnergyStar: 68/100 (khá, nhưng chưa đạt chứng nhận 275)
+- Chỉ số năng lượng: 12.8 tỷ đồng/năm
+- Phân bố tiêu thụ: HVAC 50%, Chiếu sáng 22%, Thiết bị 17%, Khác 5%
+
+**Phân tích chi tiết**:
+1. **Hệ thống HVAC**:
+   - Hiệu suất COP trung bình 3.8 (thấp hơn 12% so với chuẩn hiện đại)
+   - Vận đế: Vần hành không tối ưu, điểm đặt không thích ứng, điều khiển cực bộ
+   - Tiềm năng tiết kiệm: 15-20%
+
+2. **Hệ thống chiếu sáng**:
+   - LED điểm tích (35% cần nâng cấp)
+   - Kiểm soát: Thiếu cảm biến ánh sáng và hiện diện ở 40% điểm tích
+   - Tiềm năng tiết kiệm: 22-28%
+
+3. **Vỏ bao che tòa nhà**:
+   - Cửa sổ: SMGC 0.65 (cao hơn 30% so với chuẩn hiện đại)
+   - Cách nhiệt: R-value thấp tại mái và tường hướng tây
+   - Tiềm năng tiết kiệm: 8-12%
+
+### 1.10 Requirement #10: Lập Kế Hoạch Đạt Carbon Net Zero
+
+**Tình Huống**: Doanh nghiệp muốn lập lộ trình đạt mục tiêu carbon net zero cho tòa nhà vào năm 2035.
+
+**Tương Tác Mẫu**:
+- Người dùng: "Lập kế hoạch carbon net zero cho tòa nhà vào năm 2035."
+- Trợ lý: "Lộ trình carbon net zero đến năm 2035..."
+
+**Agent Coordination Workflow**:
+```mermaid
+sequenceDiagram
+    participant User as Executive
+    participant Coord as Coordinator Agent
+    participant Data as DataAnalysisAgent
+    participant Forecast as ForecastingAgent
+    participant Rec as RecommendationAgent
+    participant Eval as EvaluatorAgent
+    participant Adapter as AdapterAgent
+    participant Memory as MemoryAgent
+    participant Command as CommanderAgent
+    participant DB as Database
+    
+    User->>Coord: "Develop carbon net zero roadmap for building by 2035"
+    
+    Coord->>Data: Analyze current emissions baseline
+    Data->>DB: Query: Current emissions, energy sources, carbon intensity
+    DB-->>Data: Current emissions: 850 tấn CO2e/năm, Phases 1-3 breakdown
+    Data-->>Coord: Emissions baseline established
+    
+    Coord->>Forecast: Model emission reduction scenarios
+    Forecast->>DB: Query: Reduction scenarios, technology projections
+    DB-->>Forecast: Multiple pathways to net zero analyzed
+    Forecast-->>Coord: 4-phase roadmap optimal approach
+    
+    par Multi-Agent Strategy Development
+        Coord->>Rec: Generate net zero strategy recommendations
+        Rec-->>Coord: Technology roadmap, investment priorities
+        
+        Coord->>Eval: Calculate costs and ROI for each phase
+        Eval->>DB: Query: Cost-benefit analysis, financing options
+        DB-->>Eval: Phase-by-phase investment analysis
+        Eval-->>Coord: Financial roadmap validated
+        
+        Coord->>Adapter: Assess technology integration requirements
+        Adapter-->>Coord: Integration feasibility and timeline
+    end
+    
+    Coord->>Memory: Store comprehensive net zero plan
+    Memory-->>Coord: Roadmap documented for tracking
+    
+    Coord->>Command: Coordinate implementation planning
+    Command-->>Coord: Executive summary and action plan
+    
+    Coord-->>User: "Carbon Net Zero Roadmap 2035: 4-phase plan. Phase 1 (2025-2027): Energy efficiency (-30%), Phase 2 (2028-2030): Electrification (-20%), Phase 3 (2031-2034): Renewable energy (-25%), Phase 4 (2035): Carbon offsets (-10%). Total investment: 180M VND/năm, Net savings by 2035: ~70% energy costs"
+```
+
+**Expected Outcomes**:
+**Hiện trạng phát thải**:
+- Tổng phát thải: 850 tấn CO2e/năm
+  - Phạm vi 1 (trực tiếp): 128 tấn CO2e
+  - Phạm vi 2 (điện): 680 tấn CO2e  
+  - Phạm vi 3 (gián tiếp): 50 tấn CO2e
+- Cường độ carbon: 28.3 kg CO2e/m²/năm
+
+**Kế hoạch giảm phát thải theo giai đoạn**:
+
+**Giai đoạn 1 (2025-2027): Giảm 30% - Tối ưu hóa và hiệu quả**
+- Tối ưu vận hành HVAC và kiểm soát nhờ cầu (-15%)
+- Hoàn thiện chiều sáng LED và điều khiển thông minh (-8%)
+- Cách nhiệt cái tiến và cỏ hiệu suất cao (-7%)
+- Đầu tư: 1.4 tỷ đồng, ROI: 75% (5 năm)
+
+**Giai đoạn 2 (2028-2030): Giảm thêm 35% - Điện khí hóa và tái tạo**
+- Lắp đặt hệ thống nhiệt bơm thay lò hơi gas (-12%)
+- Chuyển sang bơn nhiệt điện thay lò hơi gas (-12%)  
+- Triển khai hệ thống quản lý năng lượng thông minh AI (-3%)
+- Đầu tự: 3.8 tỷ đồng, ROI: 45% (10 năm)
+
+**Giai đoạn 3 (2031-2034): Giảm thêm 25% - Tái tạo và lưu trữ**
+- Mở rộng pin mặt trời lên 200kWp (-10%)
+- Triển khai lưu trữ năng lượng 150kWh (-8%)
+- Tham gia thị trường điện phân ứng nhanh (-7%)
+- Đầu tư: 4.2 tỷ đồng, ROI: 32% (15 năm)
+
+**Giai đoạn 4 (2035): 10% còn lại - Bù đắp carbon**
+- Mua tín chỉ carbon có từ dự án được xác minh
+- Đầu tự vào dự án carbon âm trong chuối cung ứng
+- Đầu tự: 180 triệu đồng/năm
+
+**Lợi ích bổ sung**:
+- Giảm chi phí năng lượng: ~70% vào năm 2035
+- Tăng giá trị tài sản: ~8-12%  
+- Tuân thủ quy định phát thải trong tương lại
+- Cải thiện thương hiệu doanh nghiệp
+
+**Các mốc quan trọng cần đạt**:
+2027: Giảm 30% phát thải, hoàn thành tối ưu hóa năng lượng
+2030: Giảm 65% phát thải, hoàn thành điện khí hóa  
+2034: Giảm 90% phát thải, hoàn thành hệ thống tái tạo
+2035: Đạt Net Zero thông qua bù đắp carbon chất lượng cao
+
+---
+
+## 2. EAIO System Architecture
 
 ##### **"What's the current energy consumption status of Building A?"**
 **Agent Mapping**: Energy Data Intelligence Agent  

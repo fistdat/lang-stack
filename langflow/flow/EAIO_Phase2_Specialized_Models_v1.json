@@ -1,0 +1,1330 @@
+{
+  "data": {
+    "edges": [
+      {
+        "animated": false,
+        "className": "",
+        "data": {
+          "sourceHandle": {
+            "dataType": "ChatInput",
+            "id": "ChatInput-main",
+            "name": "message",
+            "output_types": ["Message"]
+          },
+          "targetHandle": {
+            "fieldName": "input_value",
+            "id": "QueryRouter-coordinator",
+            "inputTypes": ["Message"],
+            "type": "str"
+          }
+        },
+        "id": "edge-input-router",
+        "selected": false,
+        "source": "ChatInput-main",
+        "sourceHandle": "message",
+        "target": "QueryRouter-coordinator",
+        "targetHandle": "input_value"
+      },
+      {
+        "animated": false,
+        "className": "",
+        "data": {
+          "sourceHandle": {
+            "dataType": "QueryRouter",
+            "id": "QueryRouter-coordinator",
+            "name": "energy_data_route",
+            "output_types": ["Message"]
+          },
+          "targetHandle": {
+            "fieldName": "input_value",
+            "id": "EnergyDataAgent-specialized",
+            "inputTypes": ["Message"],
+            "type": "str"
+          }
+        },
+        "id": "edge-router-energy",
+        "selected": false,
+        "source": "QueryRouter-coordinator",
+        "sourceHandle": "energy_data_route",
+        "target": "EnergyDataAgent-specialized",
+        "targetHandle": "input_value"
+      },
+      {
+        "animated": false,
+        "className": "",
+        "data": {
+          "sourceHandle": {
+            "dataType": "QueryRouter",
+            "id": "QueryRouter-coordinator",
+            "name": "weather_route",
+            "output_types": ["Message"]
+          },
+          "targetHandle": {
+            "fieldName": "input_value",
+            "id": "WeatherAgent-physics",
+            "inputTypes": ["Message"],
+            "type": "str"
+          }
+        },
+        "id": "edge-router-weather",
+        "selected": false,
+        "source": "QueryRouter-coordinator",
+        "sourceHandle": "weather_route",
+        "target": "WeatherAgent-physics",
+        "targetHandle": "input_value"
+      },
+      {
+        "animated": false,
+        "className": "",
+        "data": {
+          "sourceHandle": {
+            "dataType": "QueryRouter",
+            "id": "QueryRouter-coordinator",
+            "name": "optimization_route",
+            "output_types": ["Message"]
+          },
+          "targetHandle": {
+            "fieldName": "input_value",
+            "id": "OptimizationAgent-nsga",
+            "inputTypes": ["Message"],
+            "type": "str"
+          }
+        },
+        "id": "edge-router-optimization",
+        "selected": false,
+        "source": "QueryRouter-coordinator",
+        "sourceHandle": "optimization_route",
+        "target": "OptimizationAgent-nsga",
+        "targetHandle": "input_value"
+      },
+      {
+        "animated": false,
+        "className": "",
+        "data": {
+          "sourceHandle": {
+            "dataType": "QueryRouter",
+            "id": "QueryRouter-coordinator",
+            "name": "forecast_route",
+            "output_types": ["Message"]
+          },
+          "targetHandle": {
+            "fieldName": "input_value",
+            "id": "ForecastAgent-ensemble",
+            "inputTypes": ["Message"],
+            "type": "str"
+          }
+        },
+        "id": "edge-router-forecast",
+        "selected": false,
+        "source": "QueryRouter-coordinator",
+        "sourceHandle": "forecast_route",
+        "target": "ForecastAgent-ensemble",
+        "targetHandle": "input_value"
+      },
+      {
+        "animated": false,
+        "className": "",
+        "data": {
+          "sourceHandle": {
+            "dataType": "QueryRouter",
+            "id": "QueryRouter-coordinator",
+            "name": "control_route",
+            "output_types": ["Message"]
+          },
+          "targetHandle": {
+            "fieldName": "input_value",
+            "id": "ControlAgent-dqn",
+            "inputTypes": ["Message"],
+            "type": "str"
+          }
+        },
+        "id": "edge-router-control",
+        "selected": false,
+        "source": "QueryRouter-coordinator",
+        "sourceHandle": "control_route",
+        "target": "ControlAgent-dqn",
+        "targetHandle": "input_value"
+      },
+      {
+        "animated": false,
+        "className": "",
+        "data": {
+          "sourceHandle": {
+            "dataType": "EnergyDataAgent",
+            "id": "EnergyDataAgent-specialized",
+            "name": "response",
+            "output_types": ["Message"]
+          },
+          "targetHandle": {
+            "fieldName": "agent_response",
+            "id": "ValidatorAgent-physics",
+            "inputTypes": ["Message"],
+            "type": "str"
+          }
+        },
+        "id": "edge-energy-validator",
+        "selected": false,
+        "source": "EnergyDataAgent-specialized",
+        "sourceHandle": "response",
+        "target": "ValidatorAgent-physics",
+        "targetHandle": "agent_response"
+      },
+      {
+        "animated": false,
+        "className": "",
+        "data": {
+          "sourceHandle": {
+            "dataType": "WeatherAgent",
+            "id": "WeatherAgent-physics",
+            "name": "response",
+            "output_types": ["Message"]
+          },
+          "targetHandle": {
+            "fieldName": "agent_response",
+            "id": "ValidatorAgent-physics",
+            "inputTypes": ["Message"],
+            "type": "str"
+          }
+        },
+        "id": "edge-weather-validator",
+        "selected": false,
+        "source": "WeatherAgent-physics",
+        "sourceHandle": "response",
+        "target": "ValidatorAgent-physics",
+        "targetHandle": "agent_response"
+      },
+      {
+        "animated": false,
+        "className": "",
+        "data": {
+          "sourceHandle": {
+            "dataType": "ValidatorAgent",
+            "id": "ValidatorAgent-physics",
+            "name": "validated_response",
+            "output_types": ["Message"]
+          },
+          "targetHandle": {
+            "fieldName": "input_message",
+            "id": "ResponseSynthesizer-llm",
+            "inputTypes": ["Message"],
+            "type": "str"
+          }
+        },
+        "id": "edge-validator-synthesizer",
+        "selected": false,
+        "source": "ValidatorAgent-physics",
+        "sourceHandle": "validated_response",
+        "target": "ResponseSynthesizer-llm",
+        "targetHandle": "input_message"
+      },
+      {
+        "animated": false,
+        "className": "",
+        "data": {
+          "sourceHandle": {
+            "dataType": "ResponseSynthesizer",
+            "id": "ResponseSynthesizer-llm",
+            "name": "final_response",
+            "output_types": ["Message"]
+          },
+          "targetHandle": {
+            "fieldName": "input_value",
+            "id": "ChatOutput-main",
+            "inputTypes": ["Message"],
+            "type": "str"
+          }
+        },
+        "id": "edge-synthesizer-output",
+        "selected": false,
+        "source": "ResponseSynthesizer-llm",
+        "sourceHandle": "final_response",
+        "target": "ChatOutput-main",
+        "targetHandle": "input_value"
+      },
+      {
+        "animated": false,
+        "className": "",
+        "data": {
+          "sourceHandle": {
+            "dataType": "TimescaleDBTool",
+            "id": "TimescaleDB-tool",
+            "name": "component_as_tool",
+            "output_types": ["Tool"]
+          },
+          "targetHandle": {
+            "fieldName": "tools",
+            "id": "EnergyDataAgent-specialized",
+            "inputTypes": ["Tool"],
+            "type": "other"
+          }
+        },
+        "id": "edge-db-energy",
+        "selected": false,
+        "source": "TimescaleDB-tool",
+        "sourceHandle": "component_as_tool",
+        "target": "EnergyDataAgent-specialized",
+        "targetHandle": "tools"
+      },
+      {
+        "animated": false,
+        "className": "",
+        "data": {
+          "sourceHandle": {
+            "dataType": "WeatherAPI-tool",
+            "id": "WeatherAPI-tool",
+            "name": "component_as_tool",
+            "output_types": ["Tool"]
+          },
+          "targetHandle": {
+            "fieldName": "tools",
+            "id": "WeatherAgent-physics",
+            "inputTypes": ["Tool"],
+            "type": "other"
+          }
+        },
+        "id": "edge-weather-api",
+        "selected": false,
+        "source": "WeatherAPI-tool",
+        "sourceHandle": "component_as_tool",
+        "target": "WeatherAgent-physics",
+        "targetHandle": "tools"
+      }
+    ],
+    "nodes": [
+      {
+        "data": {
+          "id": "ChatInput-main",
+          "node": {
+            "base_classes": ["Message"],
+            "beta": false,
+            "category": "inputs",
+            "conditional_paths": [],
+            "custom_fields": {},
+            "description": "User input for EAIO Phase 2 Multi-Agent System",
+            "display_name": "Chat Input",
+            "documentation": "",
+            "edited": false,
+            "field_order": ["input_value", "sender", "sender_name", "session_id"],
+            "fields": ["input_value", "sender", "sender_name", "session_id"],
+            "flow_name": "",
+            "frozen": false,
+            "icon": "MessageSquare",
+            "is_composition": false,
+            "LangflowVersion": "1.0.0",
+            "legacy": false,
+            "node_color": "#3B82F6",
+            "official": false,
+            "outputs": [
+              {
+                "display_name": "Message",
+                "method": "message_response",
+                "name": "message",
+                "selected": "Message",
+                "types": ["Message"]
+              }
+            ],
+            "pinned": false,
+            "template": {
+              "input_value": {
+                "_input_type": "MessageTextInput",
+                "advanced": false,
+                "display_name": "Text",
+                "input_types": ["Message"],
+                "name": "input_value",
+                "required": true,
+                "value": ""
+              }
+            }
+          }
+        },
+        "dragging": false,
+        "height": 346,
+        "id": "ChatInput-main",
+        "position": {"x": 100, "y": 100},
+        "positionAbsolute": {"x": 100, "y": 100},
+        "selected": false,
+        "type": "genericNode",
+        "width": 384
+      },
+      {
+        "data": {
+          "id": "QueryRouter-coordinator",
+          "node": {
+            "base_classes": ["QueryRouter"],
+            "beta": false,
+            "category": "coordinators",
+            "conditional_paths": [],
+            "custom_fields": {},
+            "description": "Route queries to specialized agents based on intent classification",
+            "display_name": "Query Router - LLM Coordinator",
+            "documentation": "",
+            "edited": false,
+            "field_order": ["routing_llm", "routing_rules", "input_value"],
+            "fields": ["routing_llm", "routing_rules", "input_value"],
+            "flow_name": "",
+            "frozen": false,
+            "icon": "Route",
+            "is_composition": false,
+            "LangflowVersion": "1.0.0",
+            "legacy": false,
+            "node_color": "#F97316",
+            "official": false,
+            "outputs": [
+              {
+                "display_name": "Energy Data Route",
+                "method": "route_energy_data",
+                "name": "energy_data_route",
+                "selected": "Message",
+                "types": ["Message"]
+              },
+              {
+                "display_name": "Weather Route",
+                "method": "route_weather",
+                "name": "weather_route",
+                "selected": "Message",
+                "types": ["Message"]
+              },
+              {
+                "display_name": "Optimization Route",
+                "method": "route_optimization",
+                "name": "optimization_route",
+                "selected": "Message",
+                "types": ["Message"]
+              },
+              {
+                "display_name": "Forecast Route",
+                "method": "route_forecast",
+                "name": "forecast_route",
+                "selected": "Message",
+                "types": ["Message"]
+              },
+              {
+                "display_name": "Control Route",
+                "method": "route_control",
+                "name": "control_route",
+                "selected": "Message",
+                "types": ["Message"]
+              }
+            ],
+            "pinned": false,
+            "template": {
+              "routing_llm": {
+                "_input_type": "DropdownInput",
+                "advanced": false,
+                "display_name": "Routing LLM",
+                "input_types": ["BaseLanguageModel"],
+                "name": "routing_llm",
+                "options": ["OpenAI", "ChatOpenAI"],
+                "required": true,
+                "value": "ChatOpenAI"
+              },
+              "routing_rules": {
+                "_input_type": "MessageTextInput",
+                "advanced": false,
+                "display_name": "Routing Rules",
+                "input_types": ["Message"],
+                "multiline": true,
+                "name": "routing_rules",
+                "required": true,
+                "value": "You are a query router for EAIO Multi-Agent System. Route user queries to appropriate agents:\\n\\nEnergy Data Intelligence: Real-time monitoring, consumption analysis, anomaly detection, performance metrics\\nWeather Intelligence: Weather correlation, climate impact, weather-based optimization\\nOptimization Strategy: ROI analysis, investment planning, cost optimization, portfolio management\\nForecast Intelligence: Demand prediction, equipment failure forecasting, long-term planning\\nSystem Control: HVAC control, equipment automation, real-time adjustments\\n\\nReturn the appropriate route based on the user query intent."
+              },
+              "input_value": {
+                "_input_type": "MessageTextInput",
+                "advanced": false,
+                "display_name": "Query Input",
+                "input_types": ["Message"],
+                "name": "input_value",
+                "required": true,
+                "value": ""
+              }
+            }
+          }
+        },
+        "dragging": false,
+        "height": 400,
+        "id": "QueryRouter-coordinator",
+        "position": {"x": 600, "y": 100},
+        "positionAbsolute": {"x": 600, "y": 100},
+        "selected": false,
+        "type": "genericNode",
+        "width": 420
+      },
+      {
+        "data": {
+          "id": "EnergyDataAgent-specialized",
+          "node": {
+            "base_classes": ["EnergyDataAgent"],
+            "beta": false,
+            "category": "specialized_agents",
+            "conditional_paths": [],
+            "custom_fields": {},
+            "description": "TimesFM + LoRA Fine-tuning for energy consumption analysis",
+            "display_name": "Energy Data Intelligence Agent",
+            "documentation": "",
+            "edited": false,
+            "field_order": ["model_config", "agent_llm", "tools", "system_message", "input_value"],
+            "fields": ["model_config", "agent_llm", "tools", "system_message", "input_value"],
+            "flow_name": "",
+            "frozen": false,
+            "icon": "Zap",
+            "is_composition": false,
+            "LangflowVersion": "1.0.0",
+            "legacy": false,
+            "node_color": "#10B981",
+            "official": false,
+            "outputs": [
+              {
+                "display_name": "Response",
+                "method": "process_energy_data",
+                "name": "response",
+                "selected": "Message",
+                "types": ["Message"]
+              }
+            ],
+            "pinned": false,
+            "template": {
+              "model_config": {
+                "_input_type": "DictInput",
+                "advanced": true,
+                "display_name": "TimesFM + LoRA Config",
+                "name": "model_config",
+                "required": true,
+                "value": {
+                  "base_model": "TimesFM-1.0-200m",
+                  "lora_rank": 16,
+                  "lora_alpha": 32,
+                  "target_modules": ["query", "key", "value"],
+                  "dropout": 0.1,
+                  "features": ["historical_consumption", "occupancy_count", "temperature", "humidity", "calendar_features", "building_envelope_data"]
+                }
+              },
+              "agent_llm": {
+                "_input_type": "DropdownInput",
+                "advanced": false,
+                "display_name": "Interface LLM",
+                "input_types": ["BaseLanguageModel"],
+                "name": "agent_llm",
+                "options": ["ChatOpenAI"],
+                "required": true,
+                "value": "ChatOpenAI"
+              },
+              "tools": {
+                "_input_type": "NestedDictInput",
+                "advanced": false,
+                "display_name": "Tools",
+                "input_types": ["Tool"],
+                "list": true,
+                "name": "tools",
+                "required": false,
+                "value": []
+              },
+              "system_message": {
+                "_input_type": "MessageTextInput",
+                "advanced": false,
+                "display_name": "System Message",
+                "input_types": ["Message"],
+                "multiline": true,
+                "name": "system_message",
+                "required": true,
+                "value": "You are the Energy Data Intelligence Agent using TimesFM + LoRA fine-tuning for advanced energy consumption analysis.\\n\\nCapabilities:\\n- Real-time energy monitoring with probabilistic confidence\\n- Historical consumption analysis with transfer learning\\n- Anomaly detection using probabilistic thresholds\\n- Multi-building pattern recognition\\n- Performance benchmarking with industry standards\\n\\nPerformance Targets:\\n- Accuracy: R² ≥ 0.94\\n- Response time: < 2 seconds\\n- Uncertainty quantification: 95% confidence intervals\\n\\nAlways provide uncertainty estimates and validate against physics constraints."
+              },
+              "input_value": {
+                "_input_type": "MessageTextInput",
+                "advanced": false,
+                "display_name": "Input",
+                "input_types": ["Message"],
+                "name": "input_value",
+                "required": true,
+                "value": ""
+              }
+            }
+          }
+        },
+        "dragging": false,
+        "height": 500,
+        "id": "EnergyDataAgent-specialized",
+        "position": {"x": 1200, "y": 50},
+        "positionAbsolute": {"x": 1200, "y": 50},
+        "selected": false,
+        "type": "genericNode",
+        "width": 450
+      },
+      {
+        "data": {
+          "id": "WeatherAgent-physics",
+          "node": {
+            "base_classes": ["WeatherAgent"],
+            "beta": false,
+            "category": "specialized_agents",
+            "conditional_paths": [],
+            "custom_fields": {},
+            "description": "Physics-Informed Random Forest + Neural Networks for weather analysis",
+            "display_name": "Weather Intelligence Agent",
+            "documentation": "",
+            "edited": false,
+            "field_order": ["model_config", "agent_llm", "tools", "system_message", "input_value"],
+            "fields": ["model_config", "agent_llm", "tools", "system_message", "input_value"],
+            "flow_name": "",
+            "frozen": false,
+            "icon": "Cloud",
+            "is_composition": false,
+            "LangflowVersion": "1.0.0",
+            "legacy": false,
+            "node_color": "#3B82F6",
+            "official": false,
+            "outputs": [
+              {
+                "display_name": "Response",
+                "method": "process_weather_data",
+                "name": "response",
+                "selected": "Message",
+                "types": ["Message"]
+              }
+            ],
+            "pinned": false,
+            "template": {
+              "model_config": {
+                "_input_type": "DictInput",
+                "advanced": true,
+                "display_name": "Physics-RF Config",
+                "name": "model_config",
+                "required": true,
+                "value": {
+                  "primary_model": "RandomForestRegressor",
+                  "n_estimators": 200,
+                  "max_depth": 15,
+                  "physics_nn": {
+                    "layers": [64, 32, 16],
+                    "activation": "relu",
+                    "physics_loss_weight": 0.3
+                  },
+                  "physics_equations": ["heat_transfer_coefficient", "thermal_resistance", "solar_heat_gain", "convective_losses"]
+                }
+              },
+              "agent_llm": {
+                "_input_type": "DropdownInput",
+                "advanced": false,
+                "display_name": "Interface LLM",
+                "input_types": ["BaseLanguageModel"],
+                "name": "agent_llm",
+                "options": ["ChatOpenAI"],
+                "required": true,
+                "value": "ChatOpenAI"
+              },
+              "tools": {
+                "_input_type": "NestedDictInput",
+                "advanced": false,
+                "display_name": "Tools",
+                "input_types": ["Tool"],
+                "list": true,
+                "name": "tools",
+                "required": false,
+                "value": []
+              },
+              "system_message": {
+                "_input_type": "MessageTextInput",
+                "advanced": false,
+                "display_name": "System Message",
+                "input_types": ["Message"],
+                "multiline": true,
+                "name": "system_message",
+                "required": true,
+                "value": "You are the Weather Intelligence Agent using Physics-Informed Random Forest + Neural Networks.\\n\\nCapabilities:\\n- Weather-energy correlation analysis with physics validation\\n- Climate impact prediction on building loads\\n- Seasonal optimization triggers\\n- Weather-based HVAC load forecasting\\n- Solar radiation impact on cooling demands\\n\\nPerformance Targets:\\n- Physics validation error: < 5%\\n- Weather correlation: R² ≥ 0.83\\n\\nAlways validate predictions against thermodynamic principles and heat transfer equations."
+              },
+              "input_value": {
+                "_input_type": "MessageTextInput",
+                "advanced": false,
+                "display_name": "Input",
+                "input_types": ["Message"],
+                "name": "input_value",
+                "required": true,
+                "value": ""
+              }
+            }
+          }
+        },
+        "dragging": false,
+        "height": 500,
+        "id": "WeatherAgent-physics",
+        "position": {"x": 1200, "y": 600},
+        "positionAbsolute": {"x": 1200, "y": 600},
+        "selected": false,
+        "type": "genericNode",
+        "width": 450
+      },
+      {
+        "data": {
+          "id": "OptimizationAgent-nsga",
+          "node": {
+            "base_classes": ["OptimizationAgent"],
+            "beta": false,
+            "category": "specialized_agents",
+            "conditional_paths": [],
+            "custom_fields": {},
+            "description": "Multi-Objective NSGA-II + XGBoost for optimization strategies",
+            "display_name": "Optimization Strategy Agent",
+            "documentation": "",
+            "edited": false,
+            "field_order": ["model_config", "agent_llm", "system_message", "input_value"],
+            "fields": ["model_config", "agent_llm", "system_message", "input_value"],
+            "flow_name": "",
+            "frozen": false,
+            "icon": "Target",
+            "is_composition": false,
+            "LangflowVersion": "1.0.0",
+            "legacy": false,
+            "node_color": "#8B5CF6",
+            "official": false,
+            "outputs": [
+              {
+                "display_name": "Response",
+                "method": "process_optimization",
+                "name": "response",
+                "selected": "Message",
+                "types": ["Message"]
+              }
+            ],
+            "pinned": false,
+            "template": {
+              "model_config": {
+                "_input_type": "DictInput",
+                "advanced": true,
+                "display_name": "NSGA-II + XGBoost Config",
+                "name": "model_config",
+                "required": true,
+                "value": {
+                  "algorithm": "NSGA-II",
+                  "population_size": 100,
+                  "generations": 200,
+                  "objectives": ["minimize_cost", "maximize_comfort", "minimize_carbon"],
+                  "ml_predictor": {
+                    "model": "XGBoostRegressor",
+                    "features": ["building_characteristics", "energy_patterns", "weather_data"],
+                    "targets": ["cost_savings", "comfort_score", "efficiency_gain"]
+                  }
+                }
+              },
+              "agent_llm": {
+                "_input_type": "DropdownInput",
+                "advanced": false,
+                "display_name": "Interface LLM",
+                "input_types": ["BaseLanguageModel"],
+                "name": "agent_llm",
+                "options": ["ChatOpenAI"],
+                "required": true,
+                "value": "ChatOpenAI"
+              },
+              "system_message": {
+                "_input_type": "MessageTextInput",
+                "advanced": false,
+                "display_name": "System Message",
+                "input_types": ["Message"],
+                "multiline": true,
+                "name": "system_message",
+                "required": true,
+                "value": "You are the Optimization Strategy Agent using Multi-Objective NSGA-II + XGBoost.\\n\\nCapabilities:\\n- ROI analysis with Monte Carlo risk assessment\\n- Multi-facility portfolio optimization\\n- Investment priority ranking\\n- Cost-benefit analysis for energy measures\\n- Strategic planning with multi-objective trade-offs\\n\\nPerformance Targets:\\n- Energy savings: 17-41%\\n- ROI: > 200% within 18 months\\n\\nAlways consider multiple objectives and provide Pareto-optimal solutions."
+              },
+              "input_value": {
+                "_input_type": "MessageTextInput",
+                "advanced": false,
+                "display_name": "Input",
+                "input_types": ["Message"],
+                "name": "input_value",
+                "required": true,
+                "value": ""
+              }
+            }
+          }
+        },
+        "dragging": false,
+        "height": 450,
+        "id": "OptimizationAgent-nsga",
+        "position": {"x": 1200, "y": 1150},
+        "positionAbsolute": {"x": 1200, "y": 1150},
+        "selected": false,
+        "type": "genericNode",
+        "width": 450
+      },
+      {
+        "data": {
+          "id": "ForecastAgent-ensemble",
+          "node": {
+            "base_classes": ["ForecastAgent"],
+            "beta": false,
+            "category": "specialized_agents",
+            "conditional_paths": [],
+            "custom_fields": {},
+            "description": "Ensemble TimesFM + DECODE LSTM for forecasting",
+            "display_name": "Forecast Intelligence Agent",
+            "documentation": "",
+            "edited": false,
+            "field_order": ["model_config", "agent_llm", "system_message", "input_value"],
+            "fields": ["model_config", "agent_llm", "system_message", "input_value"],
+            "flow_name": "",
+            "frozen": false,
+            "icon": "TrendingUp",
+            "is_composition": false,
+            "LangflowVersion": "1.0.0",
+            "legacy": false,
+            "node_color": "#F59E0B",
+            "official": false,
+            "outputs": [
+              {
+                "display_name": "Response",
+                "method": "process_forecast",
+                "name": "response",
+                "selected": "Message",
+                "types": ["Message"]
+              }
+            ],
+            "pinned": false,
+            "template": {
+              "model_config": {
+                "_input_type": "DictInput",
+                "advanced": true,
+                "display_name": "Ensemble Config",
+                "name": "model_config",
+                "required": true,
+                "value": {
+                  "tsfm_model": {
+                    "base_model": "TimesFM-1.0-200m",
+                    "lora_config": {"rank": 8, "alpha": 16},
+                    "horizons": ["short_term", "medium_term", "long_term"]
+                  },
+                  "lstm_model": {
+                    "architecture": "DECODE",
+                    "lstm_units": 32,
+                    "dense_layers": [5, 5]
+                  },
+                  "ensemble_weights": {
+                    "short_term": {"tsfm": 0.7, "lstm": 0.3},
+                    "medium_term": {"tsfm": 0.6, "lstm": 0.4},
+                    "long_term": {"tsfm": 0.8, "lstm": 0.2}
+                  }
+                }
+              },
+              "agent_llm": {
+                "_input_type": "DropdownInput",
+                "advanced": false,
+                "display_name": "Interface LLM",
+                "input_types": ["BaseLanguageModel"],
+                "name": "agent_llm",
+                "options": ["ChatOpenAI"],
+                "required": true,
+                "value": "ChatOpenAI"
+              },
+              "system_message": {
+                "_input_type": "MessageTextInput",
+                "advanced": false,
+                "display_name": "System Message",
+                "input_types": ["Message"],
+                "multiline": true,
+                "name": "system_message",
+                "required": true,
+                "value": "You are the Forecast Intelligence Agent using Ensemble TimesFM + DECODE LSTM.\\n\\nCapabilities:\\n- Multi-horizon demand forecasting with uncertainty quantification\\n- Equipment failure prediction using degradation patterns\\n- Peak load forecasting for capacity planning\\n- Long-term energy planning scenarios\\n- Probabilistic forecasts with confidence intervals\\n\\nPerformance Targets:\\n- Accuracy: R² ≥ 0.95\\n- Confidence intervals: 95%\\n\\nAlways provide probabilistic forecasts with uncertainty bounds."
+              },
+              "input_value": {
+                "_input_type": "MessageTextInput",
+                "advanced": false,
+                "display_name": "Input",
+                "input_types": ["Message"],
+                "name": "input_value",
+                "required": true,
+                "value": ""
+              }
+            }
+          }
+        },
+        "dragging": false,
+        "height": 450,
+        "id": "ForecastAgent-ensemble",
+        "position": {"x": 1700, "y": 50},
+        "positionAbsolute": {"x": 1700, "y": 50},
+        "selected": false,
+        "type": "genericNode",
+        "width": 450
+      },
+      {
+        "data": {
+          "id": "ControlAgent-dqn",
+          "node": {
+            "base_classes": ["ControlAgent"],
+            "beta": false,
+            "category": "specialized_agents",
+            "conditional_paths": [],
+            "custom_fields": {},
+            "description": "Deep Q-Network + Physics-Informed Fuzzy Logic for system control",
+            "display_name": "System Control Agent",
+            "documentation": "",
+            "edited": false,
+            "field_order": ["model_config", "agent_llm", "system_message", "input_value"],
+            "fields": ["model_config", "agent_llm", "system_message", "input_value"],
+            "flow_name": "",
+            "frozen": false,
+            "icon": "Settings",
+            "is_composition": false,
+            "LangflowVersion": "1.0.0",
+            "legacy": false,
+            "node_color": "#EF4444",
+            "official": false,
+            "outputs": [
+              {
+                "display_name": "Response",
+                "method": "process_control",
+                "name": "response",
+                "selected": "Message",
+                "types": ["Message"]
+              }
+            ],
+            "pinned": false,
+            "template": {
+              "model_config": {
+                "_input_type": "DictInput",
+                "advanced": true,
+                "display_name": "DQN + Fuzzy Config",
+                "name": "model_config",
+                "required": true,
+                "value": {
+                  "dqn_model": {
+                    "network_architecture": [256, 128, 64],
+                    "learning_rate": 0.001,
+                    "epsilon_decay": 0.995,
+                    "replay_buffer_size": 10000
+                  },
+                  "fuzzy_system": {
+                    "input_variables": ["occupancy", "temperature", "energy_cost"],
+                    "output_variables": ["hvac_setpoint", "lighting_level"],
+                    "membership_functions": "gaussian",
+                    "rules": "physics_informed_comfort_rules"
+                  },
+                  "physics_constraints": {
+                    "temperature_limits": "[18°C, 26°C]",
+                    "equipment_capacity": "manufacturer_specifications",
+                    "energy_balance": "first_law_thermodynamics"
+                  }
+                }
+              },
+              "agent_llm": {
+                "_input_type": "DropdownInput",
+                "advanced": false,
+                "display_name": "Interface LLM",
+                "input_types": ["BaseLanguageModel"],
+                "name": "agent_llm",
+                "options": ["ChatOpenAI"],
+                "required": true,
+                "value": "ChatOpenAI"
+              },
+              "system_message": {
+                "_input_type": "MessageTextInput",
+                "advanced": false,
+                "display_name": "System Message",
+                "input_types": ["Message"],
+                "multiline": true,
+                "name": "system_message",
+                "required": true,
+                "value": "You are the System Control Agent using Deep Q-Network + Physics-Informed Fuzzy Logic.\\n\\nCapabilities:\\n- Real-time HVAC optimization with comfort maintenance\\n- Automated lighting control based on occupancy and natural light\\n- Equipment scheduling for peak demand reduction\\n- Emergency response protocols with safety validation\\n- Learning-based adaptation to building behavior patterns\\n\\nPerformance Targets:\\n- Response time: < 100ms\\n- Physics validation: 100%\\n\\nAlways ensure safety constraints and thermodynamic feasibility."
+              },
+              "input_value": {
+                "_input_type": "MessageTextInput",
+                "advanced": false,
+                "display_name": "Input",
+                "input_types": ["Message"],
+                "name": "input_value",
+                "required": true,
+                "value": ""
+              }
+            }
+          }
+        },
+        "dragging": false,
+        "height": 450,
+        "id": "ControlAgent-dqn",
+        "position": {"x": 1700, "y": 550},
+        "positionAbsolute": {"x": 1700, "y": 550},
+        "selected": false,
+        "type": "genericNode",
+        "width": 450
+      },
+      {
+        "data": {
+          "id": "ValidatorAgent-physics",
+          "node": {
+            "base_classes": ["ValidatorAgent"],
+            "beta": false,
+            "category": "specialized_agents",
+            "conditional_paths": [],
+            "custom_fields": {},
+            "description": "Multi-Layer Statistical + Physics Validation",
+            "display_name": "Validator Agent",
+            "documentation": "",
+            "edited": false,
+            "field_order": ["validation_config", "agent_llm", "system_message", "agent_response"],
+            "fields": ["validation_config", "agent_llm", "system_message", "agent_response"],
+            "flow_name": "",
+            "frozen": false,
+            "icon": "Shield",
+            "is_composition": false,
+            "LangflowVersion": "1.0.0",
+            "legacy": false,
+            "node_color": "#059669",
+            "official": false,
+            "outputs": [
+              {
+                "display_name": "Validated Response",
+                "method": "validate_response",
+                "name": "validated_response",
+                "selected": "Message",
+                "types": ["Message"]
+              }
+            ],
+            "pinned": false,
+            "template": {
+              "validation_config": {
+                "_input_type": "DictInput",
+                "advanced": true,
+                "display_name": "Validation Config",
+                "name": "validation_config",
+                "required": true,
+                "value": {
+                  "data_quality": {
+                    "statistical_methods": ["outlier_detection", "drift_detection"],
+                    "quality_metrics": ["completeness", "accuracy", "consistency"],
+                    "thresholds": {"outlier_zscore": 3.0, "drift_pvalue": 0.05}
+                  },
+                  "physics_validation": {
+                    "energy_balance_tolerance": 0.05,
+                    "thermodynamic_checks": ["conservation_laws", "efficiency_limits"],
+                    "equipment_constraints": "manufacturer_specifications"
+                  },
+                  "ml_validation": {
+                    "cross_validation": "time_series_split",
+                    "ensemble_agreement": "majority_voting",
+                    "confidence_threshold": 0.85
+                  }
+                }
+              },
+              "agent_llm": {
+                "_input_type": "DropdownInput",
+                "advanced": false,
+                "display_name": "Interface LLM",
+                "input_types": ["BaseLanguageModel"],
+                "name": "agent_llm",
+                "options": ["ChatOpenAI"],
+                "required": true,
+                "value": "ChatOpenAI"
+              },
+              "system_message": {
+                "_input_type": "MessageTextInput",
+                "advanced": false,
+                "display_name": "System Message",
+                "input_types": ["Message"],
+                "multiline": true,
+                "name": "system_message",
+                "required": true,
+                "value": "You are the Validator Agent using Multi-Layer Statistical + Physics Validation.\\n\\nCapabilities:\\n- Real-time data quality monitoring with automated alerts\\n- Physics consistency validation for all model predictions\\n- Model performance tracking with drift detection\\n- Safety protocol verification for all control actions\\n- Compliance reporting for regulatory requirements\\n\\nPerformance Targets:\\n- Validation accuracy: 99.5%\\n- Data quality score: ≥ 0.96\\n\\nAlways verify physics consistency and safety before approving any actions."
+              },
+              "agent_response": {
+                "_input_type": "MessageTextInput",
+                "advanced": false,
+                "display_name": "Agent Response to Validate",
+                "input_types": ["Message"],
+                "name": "agent_response",
+                "required": true,
+                "value": ""
+              }
+            }
+          }
+        },
+        "dragging": false,
+        "height": 450,
+        "id": "ValidatorAgent-physics",
+        "position": {"x": 1700, "y": 1050},
+        "positionAbsolute": {"x": 1700, "y": 1050},
+        "selected": false,
+        "type": "genericNode",
+        "width": 450
+      },
+      {
+        "data": {
+          "id": "ResponseSynthesizer-llm",
+          "node": {
+            "base_classes": ["ResponseSynthesizer"],
+            "beta": false,
+            "category": "coordinators",
+            "conditional_paths": [],
+            "custom_fields": {},
+            "description": "ChatGPT-4o-mini for natural language response generation",
+            "display_name": "Response Synthesizer - LLM Interface",
+            "documentation": "",
+            "edited": false,
+            "field_order": ["synthesis_llm", "synthesis_prompt", "input_message"],
+            "fields": ["synthesis_llm", "synthesis_prompt", "input_message"],
+            "flow_name": "",
+            "frozen": false,
+            "icon": "MessageSquare",
+            "is_composition": false,
+            "LangflowVersion": "1.0.0",
+            "legacy": false,
+            "node_color": "#6366F1",
+            "official": false,
+            "outputs": [
+              {
+                "display_name": "Final Response",
+                "method": "synthesize_response",
+                "name": "final_response",
+                "selected": "Message",
+                "types": ["Message"]
+              }
+            ],
+            "pinned": false,
+            "template": {
+              "synthesis_llm": {
+                "_input_type": "DropdownInput",
+                "advanced": false,
+                "display_name": "Synthesis LLM",
+                "input_types": ["BaseLanguageModel"],
+                "name": "synthesis_llm",
+                "options": ["ChatOpenAI"],
+                "required": true,
+                "value": "ChatOpenAI"
+              },
+              "synthesis_prompt": {
+                "_input_type": "MessageTextInput",
+                "advanced": false,
+                "display_name": "Synthesis Prompt",
+                "input_types": ["Message"],
+                "multiline": true,
+                "name": "synthesis_prompt",
+                "required": true,
+                "value": "You are a natural language interface for the EAIO Multi-Agent System Phase 2.\\n\\nYour role:\\n- Convert technical analysis from specialized agents into user-friendly responses\\n- Maintain technical accuracy while ensuring clarity\\n- Include confidence intervals and uncertainty information\\n- Highlight physics validation results\\n- Provide actionable recommendations\\n\\nAlways explain the specialized models used and their performance metrics when relevant."
+              },
+              "input_message": {
+                "_input_type": "MessageTextInput",
+                "advanced": false,
+                "display_name": "Validated Agent Response",
+                "input_types": ["Message"],
+                "name": "input_message",
+                "required": true,
+                "value": ""
+              }
+            }
+          }
+        },
+        "dragging": false,
+        "height": 400,
+        "id": "ResponseSynthesizer-llm",
+        "position": {"x": 2200, "y": 600},
+        "positionAbsolute": {"x": 2200, "y": 600},
+        "selected": false,
+        "type": "genericNode",
+        "width": 420
+      },
+      {
+        "data": {
+          "id": "ChatOutput-main",
+          "node": {
+            "base_classes": ["Message"],
+            "beta": false,
+            "category": "outputs",
+            "conditional_paths": [],
+            "custom_fields": {},
+            "description": "Final output for EAIO Phase 2 Multi-Agent System",
+            "display_name": "Chat Output",
+            "documentation": "",
+            "edited": false,
+            "field_order": ["input_value", "data_template"],
+            "fields": ["input_value", "data_template"],
+            "flow_name": "",
+            "frozen": false,
+            "icon": "MessageCircle",
+            "is_composition": false,
+            "LangflowVersion": "1.0.0",
+            "legacy": false,
+            "node_color": "#3B82F6",
+            "official": false,
+            "outputs": [
+              {
+                "display_name": "Response",
+                "method": "response",
+                "name": "response",
+                "selected": "Message",
+                "types": ["Message"]
+              }
+            ],
+            "pinned": false,
+            "template": {
+              "input_value": {
+                "_input_type": "MessageTextInput",
+                "advanced": false,
+                "display_name": "Text",
+                "input_types": ["Message"],
+                "name": "input_value",
+                "required": true,
+                "value": ""
+              },
+              "data_template": {
+                "_input_type": "MessageTextInput",
+                "advanced": true,
+                "display_name": "Data Template",
+                "input_types": ["Message"],
+                "name": "data_template",
+                "required": false,
+                "value": "{text}"
+              }
+            }
+          }
+        },
+        "dragging": false,
+        "height": 346,
+        "id": "ChatOutput-main",
+        "position": {"x": 2700, "y": 650},
+        "positionAbsolute": {"x": 2700, "y": 650},
+        "selected": false,
+        "type": "genericNode",
+        "width": 384
+      },
+      {
+        "data": {
+          "id": "TimescaleDB-tool",
+          "node": {
+            "base_classes": ["Tool"],
+            "beta": false,
+            "category": "tools",
+            "conditional_paths": [],
+            "custom_fields": {},
+            "description": "TimescaleDB connection for time-series energy data",
+            "display_name": "TimescaleDB Tool",
+            "documentation": "",
+            "edited": false,
+            "field_order": ["database_config", "connection_string"],
+            "fields": ["database_config", "connection_string"],
+            "flow_name": "",
+            "frozen": false,
+            "icon": "Database",
+            "is_composition": false,
+            "LangflowVersion": "1.0.0",
+            "legacy": false,
+            "node_color": "#10B981",
+            "official": false,
+            "outputs": [
+              {
+                "display_name": "Component as Tool",
+                "method": "build_tool",
+                "name": "component_as_tool",
+                "selected": "Tool",
+                "types": ["Tool"]
+              }
+            ],
+            "pinned": false,
+            "template": {
+              "database_config": {
+                "_input_type": "DictInput",
+                "advanced": false,
+                "display_name": "Database Config",
+                "name": "database_config",
+                "required": true,
+                "value": {
+                  "host": "localhost",
+                  "port": 5434,
+                  "database": "eaio_energy",
+                  "user": "eaio_user",
+                  "schema": "public"
+                }
+              },
+              "connection_string": {
+                "_input_type": "PasswordInput",
+                "advanced": true,
+                "display_name": "Connection String",
+                "name": "connection_string",
+                "required": false,
+                "value": "postgresql://eaio_user:password@localhost:5434/eaio_energy"
+              }
+            }
+          }
+        },
+        "dragging": false,
+        "height": 346,
+        "id": "TimescaleDB-tool",
+        "position": {"x": 100, "y": 600},
+        "positionAbsolute": {"x": 100, "y": 600},
+        "selected": false,
+        "type": "genericNode",
+        "width": 350
+      },
+      {
+        "data": {
+          "id": "WeatherAPI-tool",
+          "node": {
+            "base_classes": ["Tool"],
+            "beta": false,
+            "category": "tools",
+            "conditional_paths": [],
+            "custom_fields": {},
+            "description": "Weather API integration for climate data",
+            "display_name": "Weather API Tool",
+            "documentation": "",
+            "edited": false,
+            "field_order": ["api_config", "api_key"],
+            "fields": ["api_config", "api_key"],
+            "flow_name": "",
+            "frozen": false,
+            "icon": "Cloud",
+            "is_composition": false,
+            "LangflowVersion": "1.0.0",
+            "legacy": false,
+            "node_color": "#3B82F6",
+            "official": false,
+            "outputs": [
+              {
+                "display_name": "Component as Tool",
+                "method": "build_tool",
+                "name": "component_as_tool",
+                "selected": "Tool",
+                "types": ["Tool"]
+              }
+            ],
+            "pinned": false,
+            "template": {
+              "api_config": {
+                "_input_type": "DictInput",
+                "advanced": false,
+                "display_name": "API Config",
+                "name": "api_config",
+                "required": true,
+                "value": {
+                  "base_url": "https://api.openweathermap.org/data/2.5",
+                  "endpoints": ["current", "forecast", "history"],
+                  "units": "metric"
+                }
+              },
+              "api_key": {
+                "_input_type": "PasswordInput",
+                "advanced": false,
+                "display_name": "API Key",
+                "name": "api_key",
+                "required": true,
+                "value": ""
+              }
+            }
+          }
+        },
+        "dragging": false,
+        "height": 346,
+        "id": "WeatherAPI-tool",
+        "position": {"x": 100, "y": 1000},
+        "positionAbsolute": {"x": 100, "y": 1000},
+        "selected": false,
+        "type": "genericNode",
+        "width": 350
+      }
+    ],
+    "viewport": {
+      "x": 0,
+      "y": 0,
+      "zoom": 0.8
+    }
+  },
+  "description": "EAIO Phase 2 Multi-Agent System with specialized models: TimesFM+LoRA, Physics-Informed RF+NN, NSGA-II+XGBoost, Ensemble forecasting, DQN+Fuzzy Logic, and Multi-Layer Validation. Features hybrid LLM interface with ChatGPT-4o-mini for user interaction and research-proven specialized models for core analytics.",
+  "name": "EAIO Phase 2 - Specialized Models",
+  "last_tested_version": "1.0.0"
+}

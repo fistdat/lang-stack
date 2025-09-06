@@ -1,0 +1,727 @@
+{
+  "data": {
+    "edges": [
+      {
+        "animated": false,
+        "className": "",
+        "data": {
+          "sourceHandle": {
+            "dataType": "ChatInput",
+            "id": "ChatInput-main",
+            "name": "message",
+            "output_types": ["Message"]
+          },
+          "targetHandle": {
+            "fieldName": "input_value",
+            "id": "Agent-coordinator", 
+            "inputTypes": ["Message"],
+            "type": "str"
+          }
+        },
+        "id": "reactflow__edge-ChatInput-main{œdataTypeœ:œChatInputœ,œidœ:œChatInput-mainœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}-Agent-coordinator{œfieldNameœ:œinput_valueœ,œidœ:œAgent-coordinatorœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "selected": false,
+        "source": "ChatInput-main",
+        "sourceHandle": "{œdataTypeœ:œChatInputœ,œidœ:œChatInput-mainœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}",
+        "target": "Agent-coordinator", 
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œAgent-coordinatorœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
+      },
+      {
+        "animated": false,
+        "className": "",
+        "data": {
+          "sourceHandle": {
+            "dataType": "SQLComponent",
+            "id": "SQLComponent-database",
+            "name": "component_as_tool",
+            "output_types": ["Tool"]
+          },
+          "targetHandle": {
+            "fieldName": "tools",
+            "id": "Agent-coordinator",
+            "inputTypes": ["Tool"],
+            "type": "other"
+          }
+        },
+        "id": "reactflow__edge-SQLComponent-database{œdataTypeœ:œSQLComponentœ,œidœ:œSQLComponent-databaseœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}-Agent-coordinator{œfieldNameœ:œtoolsœ,œidœ:œAgent-coordinatorœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
+        "selected": false,
+        "source": "SQLComponent-database",
+        "sourceHandle": "{œdataTypeœ:œSQLComponentœ,œidœ:œSQLComponent-databaseœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}",
+        "target": "Agent-coordinator",
+        "targetHandle": "{œfieldNameœ:œtoolsœ,œidœ:œAgent-coordinatorœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}"
+      },
+      {
+        "animated": false,
+        "className": "",
+        "data": {
+          "sourceHandle": {
+            "dataType": "URLComponent",
+            "id": "URLComponent-weather",
+            "name": "component_as_tool",
+            "output_types": ["Tool"]
+          },
+          "targetHandle": {
+            "fieldName": "tools",
+            "id": "Agent-coordinator",
+            "inputTypes": ["Tool"],
+            "type": "other"
+          }
+        },
+        "id": "reactflow__edge-URLComponent-weather{œdataTypeœ:œURLComponentœ,œidœ:œURLComponent-weatherœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}-Agent-coordinator{œfieldNameœ:œtoolsœ,œidœ:œAgent-coordinatorœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}",
+        "selected": false,
+        "source": "URLComponent-weather",
+        "sourceHandle": "{œdataTypeœ:œURLComponentœ,œidœ:œURLComponent-weatherœ,œnameœ:œcomponent_as_toolœ,œoutput_typesœ:[œToolœ]}",
+        "target": "Agent-coordinator",
+        "targetHandle": "{œfieldNameœ:œtoolsœ,œidœ:œAgent-coordinatorœ,œinputTypesœ:[œToolœ],œtypeœ:œotherœ}"
+      },
+      {
+        "animated": false,
+        "className": "",
+        "data": {
+          "sourceHandle": {
+            "dataType": "Agent",
+            "id": "Agent-coordinator",
+            "name": "response",
+            "output_types": ["Message"]
+          },
+          "targetHandle": {
+            "fieldName": "input_value",
+            "id": "ChatOutput-main",
+            "inputTypes": ["Message"],
+            "type": "str"
+          }
+        },
+        "id": "reactflow__edge-Agent-coordinator{œdataTypeœ:œAgentœ,œidœ:œAgent-coordinatorœ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-main{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-mainœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "selected": false,
+        "source": "Agent-coordinator",
+        "sourceHandle": "{œdataTypeœ:œAgentœ,œidœ:œAgent-coordinatorœ,œnameœ:œresponseœ,œoutput_typesœ:[œMessageœ]}",
+        "target": "ChatOutput-main",
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-mainœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}"
+      }
+    ],
+    "nodes": [
+      {
+        "data": {
+          "id": "ChatInput-main",
+          "node": {
+            "base_classes": ["Message"],
+            "beta": false,
+            "category": "inputs",
+            "conditional_paths": [],
+            "custom_fields": {},
+            "description": "Get chat inputs from the Playground for EAIO Phase 2 system.",
+            "display_name": "Chat Input",
+            "documentation": "",
+            "edited": false,
+            "field_order": ["input_value", "sender", "sender_name", "session_id"],
+            "fields": ["input_value", "sender", "sender_name", "session_id"],
+            "flow_name": "",
+            "frozen": false,
+            "icon": "MessageSquare",
+            "is_composition": false,
+            "LangflowVersion": "1.5.0",
+            "legacy": false,
+            "node_color": "#3B82F6",
+            "official": false,
+            "outputs": [
+              {
+                "cache": true,
+                "display_name": "Message",
+                "method": "message_response",
+                "name": "message",
+                "selected": "Message",
+                "types": ["Message"]
+              }
+            ],
+            "pinned": false,
+            "template": {
+              "input_value": {
+                "_input_type": "MessageTextInput",
+                "advanced": false,
+                "display_name": "Text",
+                "input_types": ["Message"],
+                "name": "input_value",
+                "placeholder": "Type your message here...",
+                "required": true,
+                "value": ""
+              },
+              "sender": {
+                "_input_type": "DropdownInput",
+                "advanced": true,
+                "display_name": "Sender Type",
+                "name": "sender",
+                "options": ["Machine", "User"],
+                "value": "User"
+              },
+              "sender_name": {
+                "_input_type": "StrInput",
+                "advanced": true,
+                "display_name": "Sender Name",
+                "name": "sender_name",
+                "value": "User"
+              },
+              "session_id": {
+                "_input_type": "StrInput",
+                "advanced": true,
+                "display_name": "Session ID",
+                "name": "session_id",
+                "value": ""
+              }
+            }
+          },
+          "type": "ChatInput"
+        },
+        "dragging": false,
+        "height": 346,
+        "id": "ChatInput-main",
+        "position": {"x": 240.62962962962962, "y": 278.7037037037037},
+        "positionAbsolute": {"x": 240.62962962962962, "y": 278.7037037037037},
+        "selected": false,
+        "type": "genericNode",
+        "width": 384
+      },
+      {
+        "data": {
+          "id": "Agent-coordinator",
+          "node": {
+            "base_classes": ["Agent"],
+            "beta": false,
+            "category": "agents",
+            "conditional_paths": [],
+            "custom_fields": {},
+            "description": "EAIO Phase 2 Multi-Agent System with specialized models for energy optimization.",
+            "display_name": "EAIO Phase 2 Coordinator Agent",
+            "documentation": "",
+            "edited": false,
+            "field_order": [
+              "agent_llm",
+              "max_tokens",
+              "model_kwargs",
+              "json_mode",
+              "model_name",
+              "openai_api_base",
+              "openai_api_key",
+              "openai_organization",
+              "openai_proxy",
+              "output_schema",
+              "seed",
+              "stream",
+              "temperature",
+              "tool_choice",
+              "tools",
+              "agent_description",
+              "input_value",
+              "agent_name",
+              "memory",
+              "system_message"
+            ],
+            "fields": [
+              "agent_llm",
+              "max_tokens",
+              "model_kwargs",
+              "json_mode",
+              "model_name",
+              "openai_api_base",
+              "openai_api_key",
+              "openai_organization",
+              "openai_proxy",
+              "output_schema",
+              "seed",
+              "stream",
+              "temperature",
+              "tool_choice",
+              "tools",
+              "agent_description",
+              "input_value",
+              "agent_name",
+              "memory",
+              "system_message"
+            ],
+            "flow_name": "",
+            "frozen": false,
+            "icon": "bot",
+            "is_composition": false,
+            "LangflowVersion": "1.5.0",
+            "legacy": false,
+            "node_color": "#4ade80",
+            "official": false,
+            "outputs": [
+              {
+                "cache": true,
+                "display_name": "Response",
+                "method": "message_response",
+                "name": "response",
+                "selected": "Message",
+                "types": ["Message"]
+              }
+            ],
+            "pinned": false,
+            "template": {
+              "agent_description": {
+                "_input_type": "MessageTextInput",
+                "advanced": true,
+                "display_name": "Agent Description",
+                "info": "Agent description to help the Language Model understand its role.",
+                "input_types": ["Message"],
+                "name": "agent_description",
+                "value": "EAIO Phase 2 Multi-Agent System coordinator with access to specialized models for energy optimization, forecasting, and building control."
+              },
+              "agent_llm": {
+                "_input_type": "DropdownInput",
+                "advanced": false,
+                "combobox": false,
+                "dialog_inputs": {},
+                "display_name": "Language Model",
+                "info": "",
+                "input_types": [],
+                "name": "agent_llm",
+                "options": ["gpt-4o-mini", "gpt-4o", "gpt-3.5-turbo", "ChatOpenAI"],
+                "real_time_refresh": true,
+                "refresh_button": false,
+                "value": "gpt-4o-mini"
+              },
+              "agent_name": {
+                "_input_type": "StrInput",
+                "advanced": true,
+                "display_name": "Agent Name",
+                "info": "Agent name to help the Language Model understand its role.",
+                "input_types": ["str"],
+                "name": "agent_name",
+                "value": "EAIO Phase 2 Coordinator"
+              },
+              "input_value": {
+                "_input_type": "MessageTextInput",
+                "advanced": false,
+                "display_name": "Question",
+                "info": "",
+                "input_types": ["Message"],
+                "name": "input_value",
+                "required": true,
+                "value": ""
+              },
+              "max_tokens": {
+                "_input_type": "IntInput",
+                "advanced": true,
+                "display_name": "Max Tokens",
+                "info": "",
+                "input_types": [],
+                "name": "max_tokens",
+                "value": 1000
+              },
+              "memory": {
+                "_input_type": "BaseChatMemoryInput",
+                "advanced": false,
+                "display_name": "Memory",
+                "info": "",
+                "input_types": ["BaseChatMemory"],
+                "name": "memory",
+                "value": null
+              },
+              "model_kwargs": {
+                "_input_type": "DictInput",
+                "advanced": true,
+                "display_name": "Model Kwargs",
+                "info": "",
+                "input_types": [],
+                "name": "model_kwargs",
+                "value": {}
+              },
+              "openai_api_key": {
+                "_input_type": "SecretStrInput",
+                "advanced": false,
+                "display_name": "OpenAI API Key",
+                "info": "",
+                "input_types": [],
+                "name": "openai_api_key",
+                "value": "OPENAI_API_KEY"
+              },
+              "system_message": {
+                "_input_type": "MessageTextInput",
+                "advanced": false,
+                "display_name": "System Message",
+                "info": "",
+                "input_types": ["Message"],
+                "multiline": true,
+                "name": "system_message",
+                "value": "You are the EAIO Phase 2 Multi-Agent System Coordinator, an advanced AI system designed for energy optimization in buildings.\n\nYour capabilities include:\n\n🔬 **Specialized AI Models:**\n- TimesFM + LoRA fine-tuning for energy forecasting (R² ≥ 0.94)\n- Physics-informed Random Forest + Neural Networks for weather analysis\n- Multi-objective NSGA-II + XGBoost for optimization strategies\n- Ensemble TimesFM + DECODE LSTM for multi-horizon forecasting\n- Deep Q-Network + Physics-informed fuzzy logic for system control\n- Multi-layer statistical + physics validation for quality assurance\n\n📊 **Data Access:**\n- TimescaleDB with hypertables for time-series energy data\n- Real-time building management system integration\n- Weather API for climate correlation analysis\n- Historical consumption patterns and building envelope data\n\n🎯 **Key Performance Targets:**\n- Energy savings: 17-41% improvement\n- Forecasting accuracy: R² ≥ 0.94 with 95% confidence intervals\n- Real-time response: < 2 seconds for analytics, < 100ms for control\n- Physics validation: < 5% energy balance error\n\n⚡ **User Types & Services:**\n- Facility Managers: Real-time monitoring, alerts, operational reports\n- Building Owners: Portfolio analysis, ROI calculations, strategic planning\n- Energy Consultants: Advanced analytics, anomaly detection, predictive modeling\n\nAlways:\n- Provide uncertainty estimates with confidence intervals\n- Validate predictions against physics constraints\n- Explain which specialized models are being used\n- Include performance metrics when relevant\n- Ensure recommendations are actionable and safe\n\nYou represent the cutting edge of building energy intelligence, combining domain expertise with state-of-the-art AI models."
+              },
+              "temperature": {
+                "_input_type": "FloatInput",
+                "advanced": false,
+                "display_name": "Temperature",
+                "info": "",
+                "input_types": [],
+                "name": "temperature",
+                "value": 0.1
+              },
+              "tools": {
+                "_input_type": "NestedDictInput",
+                "advanced": false,
+                "display_name": "Tools",
+                "info": "",
+                "input_types": ["Tool"],
+                "list": true,
+                "name": "tools",
+                "value": []
+              }
+            }
+          },
+          "type": "Agent"
+        },
+        "dragging": false,
+        "height": 1173,
+        "id": "Agent-coordinator",
+        "position": {"x": 813.4814814814815, "y": -199.53703703703698},
+        "positionAbsolute": {"x": 813.4814814814815, "y": -199.53703703703698},
+        "selected": false,
+        "type": "genericNode",
+        "width": 384
+      },
+      {
+        "data": {
+          "id": "ChatOutput-main",
+          "node": {
+            "base_classes": ["Message"],
+            "beta": false,
+            "category": "outputs",
+            "conditional_paths": [],
+            "custom_fields": {},
+            "description": "Display a chat message in the Playground for EAIO Phase 2 responses.",
+            "display_name": "Chat Output",
+            "documentation": "",
+            "edited": false,
+            "field_order": ["input_value", "data_template"],
+            "fields": ["input_value", "data_template"],
+            "flow_name": "",
+            "frozen": false,
+            "icon": "ChatBubbleLeftRightIcon",
+            "is_composition": false,
+            "LangflowVersion": "1.5.0",
+            "legacy": false,
+            "node_color": "#3B82F6",
+            "official": false,
+            "outputs": [
+              {
+                "cache": true,
+                "display_name": "Response",
+                "method": "response",
+                "name": "response",
+                "selected": "Message",
+                "types": ["Message"]
+              }
+            ],
+            "pinned": false,
+            "template": {
+              "data_template": {
+                "_input_type": "MessageTextInput",
+                "advanced": true,
+                "display_name": "Data Template",
+                "info": "Template to convert Data to Text. If left empty, it will be dynamically set to the repr of the data.",
+                "input_types": ["Message"],
+                "name": "data_template",
+                "value": "{text}"
+              },
+              "input_value": {
+                "_input_type": "MessageTextInput",
+                "advanced": false,
+                "display_name": "Text",
+                "info": "",
+                "input_types": ["Message"],
+                "name": "input_value",
+                "required": true,
+                "value": ""
+              }
+            }
+          },
+          "type": "ChatOutput"
+        },
+        "dragging": false,
+        "height": 346,
+        "id": "ChatOutput-main",
+        "position": {"x": 1386.333333333333, "y": 278.7037037037037},
+        "positionAbsolute": {"x": 1386.333333333333, "y": 278.7037037037037},
+        "selected": false,
+        "type": "genericNode",
+        "width": 384
+      },
+      {
+        "data": {
+          "id": "SQLComponent-database",
+          "node": {
+            "base_classes": ["Tool"],
+            "beta": false,
+            "category": "tools",
+            "conditional_paths": [],
+            "custom_fields": {},
+            "description": "Executes SQL queries on TimescaleDB for EAIO energy data analysis.",
+            "display_name": "TimescaleDB Energy Database",
+            "documentation": "https://docs.langflow.org/components-data#sql-database",
+            "edited": false,
+            "field_order": [
+              "database_uri",
+              "include_columns",
+              "add_error"
+            ],
+            "fields": [
+              "database_uri",
+              "include_columns",
+              "add_error"
+            ],
+            "flow_name": "",
+            "frozen": false,
+            "icon": "database",
+            "is_composition": false,
+            "LangflowVersion": "1.5.0",
+            "legacy": false,
+            "node_color": "#10B981",
+            "official": false,
+            "outputs": [
+              {
+                "cache": true,
+                "display_name": "Component as Tool",
+                "method": "build_tool",
+                "name": "component_as_tool",
+                "selected": "Tool",
+                "types": ["Tool"]
+              }
+            ],
+            "pinned": false,
+            "template": {
+              "add_error": {
+                "_input_type": "BoolInput",
+                "advanced": true,
+                "display_name": "Add Error",
+                "info": "If True, the error will be added to the result",
+                "name": "add_error",
+                "value": false
+              },
+              "database_uri": {
+                "_input_type": "StrInput",
+                "advanced": false,
+                "display_name": "Database URI",
+                "info": "URI for the TimescaleDB database connection",
+                "name": "database_uri",
+                "placeholder": "postgresql://eaio_user:password@localhost:5434/eaio_energy",
+                "value": "postgresql://eaio_user:password@localhost:5434/eaio_energy"
+              },
+              "include_columns": {
+                "_input_type": "BoolInput",
+                "advanced": true,
+                "display_name": "Include Columns",
+                "info": "",
+                "name": "include_columns",
+                "value": true
+              }
+            }
+          },
+          "type": "SQLComponent"
+        },
+        "dragging": false,
+        "height": 346,
+        "id": "SQLComponent-database",
+        "position": {"x": 240.62962962962962, "y": -199.53703703703698},
+        "positionAbsolute": {"x": 240.62962962962962, "y": -199.53703703703698},
+        "selected": false,
+        "type": "genericNode",
+        "width": 384
+      },
+      {
+        "data": {
+          "id": "URLComponent-weather",
+          "node": {
+            "base_classes": ["Tool"],
+            "beta": false,
+            "category": "tools",
+            "conditional_paths": [],
+            "custom_fields": {},
+            "description": "Fetch weather data and climate information for energy-weather correlation analysis.",
+            "display_name": "Weather Data Integration",
+            "documentation": "https://docs.langflow.org/components-data#url",
+            "edited": false,
+            "field_order": [
+              "urls",
+              "max_depth",
+              "prevent_outside",
+              "use_async",
+              "format",
+              "timeout",
+              "headers",
+              "filter_text_html",
+              "continue_on_failure",
+              "check_response_status",
+              "autoset_encoding"
+            ],
+            "fields": [
+              "urls",
+              "max_depth",
+              "prevent_outside",
+              "use_async",
+              "format",
+              "timeout",
+              "headers",
+              "filter_text_html",
+              "continue_on_failure",
+              "check_response_status",
+              "autoset_encoding"
+            ],
+            "flow_name": "",
+            "frozen": false,
+            "icon": "layout-template",
+            "is_composition": false,
+            "LangflowVersion": "1.5.0",
+            "legacy": false,
+            "node_color": "#3B82F6",
+            "official": false,
+            "outputs": [
+              {
+                "cache": true,
+                "display_name": "Component as Tool",
+                "method": "build_tool",
+                "name": "component_as_tool",
+                "selected": "Tool",
+                "types": ["Tool"]
+              }
+            ],
+            "pinned": false,
+            "template": {
+              "autoset_encoding": {
+                "_input_type": "BoolInput",
+                "advanced": true,
+                "display_name": "Autoset Encoding",
+                "info": "If enabled, automatically sets the encoding of the request.",
+                "name": "autoset_encoding",
+                "value": true
+              },
+              "check_response_status": {
+                "_input_type": "BoolInput",
+                "advanced": true,
+                "display_name": "Check Response Status",
+                "info": "If enabled, checks the response status of the request.",
+                "name": "check_response_status",
+                "value": false
+              },
+              "continue_on_failure": {
+                "_input_type": "BoolInput",
+                "advanced": true,
+                "display_name": "Continue on Failure",
+                "info": "If enabled, continues crawling even if some requests fail.",
+                "name": "continue_on_failure",
+                "value": true
+              },
+              "filter_text_html": {
+                "_input_type": "BoolInput",
+                "advanced": true,
+                "display_name": "Filter Text/HTML",
+                "info": "If enabled, filters out text/css content type from the results.",
+                "name": "filter_text_html",
+                "value": true
+              },
+              "format": {
+                "_input_type": "DropdownInput",
+                "advanced": true,
+                "display_name": "Output Format",
+                "info": "Output Format. Use 'Text' to extract the text from the HTML or 'HTML' for the raw HTML content.",
+                "name": "format",
+                "options": ["Text", "HTML"],
+                "value": "Text"
+              },
+              "headers": {
+                "_input_type": "TableInput",
+                "advanced": true,
+                "display_name": "Headers",
+                "info": "The headers to send with the request",
+                "name": "headers",
+                "table_schema": [
+                  {
+                    "description": "Header name",
+                    "display_name": "Header",
+                    "name": "key",
+                    "type": "str"
+                  },
+                  {
+                    "description": "Header value",
+                    "display_name": "Value", 
+                    "name": "value",
+                    "type": "str"
+                  }
+                ],
+                "value": [{"key": "User-Agent", "value": "EAIO-Phase2-Weather-Agent/1.0"}]
+              },
+              "max_depth": {
+                "_input_type": "SliderInput",
+                "advanced": false,
+                "display_name": "Depth",
+                "info": "Controls how many 'clicks' away from the initial page the crawler will go",
+                "name": "max_depth",
+                "range_spec": {"min": 1, "max": 5, "step": 1},
+                "value": 1
+              },
+              "prevent_outside": {
+                "_input_type": "BoolInput",
+                "advanced": true,
+                "display_name": "Prevent Outside",
+                "info": "If enabled, only crawls URLs within the same domain as the root URL.",
+                "name": "prevent_outside",
+                "value": true
+              },
+              "timeout": {
+                "_input_type": "IntInput",
+                "advanced": true,
+                "display_name": "Timeout",
+                "info": "Timeout for the request in seconds.",
+                "name": "timeout",
+                "value": 30
+              },
+              "urls": {
+                "_input_type": "MessageTextInput",
+                "advanced": false,
+                "display_name": "Weather Data URLs",
+                "info": "Enter weather API endpoints or meteorological data sources for energy correlation analysis.",
+                "is_list": true,
+                "list_add_label": "Add Weather URL",
+                "name": "urls",
+                "placeholder": "https://api.openweathermap.org/data/2.5/current?q=YourCity&appid=YOUR_API_KEY",
+                "value": []
+              },
+              "use_async": {
+                "_input_type": "BoolInput",
+                "advanced": true,
+                "display_name": "Use Async",
+                "info": "If enabled, uses asynchronous loading which can be significantly faster.",
+                "name": "use_async",
+                "value": true
+              }
+            }
+          },
+          "type": "URLComponent"
+        },
+        "dragging": false,
+        "height": 650,
+        "id": "URLComponent-weather",
+        "position": {"x": 240.62962962962962, "y": 400},
+        "positionAbsolute": {"x": 240.62962962962962, "y": 400},
+        "selected": false,
+        "type": "genericNode",
+        "width": 384
+      }
+    ],
+    "viewport": {
+      "x": 154.1037037037037,
+      "y": 325.85185185185185,
+      "zoom": 0.8
+    }
+  },
+  "description": "EAIO Phase 2 Multi-Agent System with specialized AI models for building energy optimization. Features TimesFM+LoRA forecasting, physics-informed weather analysis, NSGA-II optimization, ensemble modeling, DQN control systems, and multi-layer validation. Achieves 17-41% energy savings with R²≥0.94 forecasting accuracy.",
+  "endpoint_name": null,
+  "id": "phase2-specialized-models-001",
+  "is_component": false,
+  "last_tested_version": "1.5.0.post1",
+  "name": "EAIO Phase 2 - Specialized Models",
+  "tags": [
+    "energy",
+    "optimization",
+    "ai",
+    "specialized-models",
+    "physics-informed",
+    "multi-agent"
+  ]
+}
