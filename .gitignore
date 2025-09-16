@@ -47,6 +47,11 @@ venv/
 *.sqlite
 *.sqlite3Energy-AI-Optimizer/BDG2-DB/eaio_energy_backup_20250813_165739.sql
 
+# API Keys and sensitive files
+API_KEY.txt
+*.key
+*.pem
+
 # Langflow files with API keys
 langflow/flow/EAIO Multi Agent System.json
 langflow/flow/EAIO Multi Agent System_v2.json
