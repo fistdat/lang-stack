@@ -1,10 +1,18 @@
-# Lang Stack - Integrated Langflow + Langfuse
+# Lang Stack - Integrated Langflow + Langfuse (v3.0)
 
-Triển khai hoàn chỉnh Langflow tích hợp với Langfuse sử dụng Docker Compose để xây dựng, triển khai và giám sát AI workflows với observability chuyên nghiệp.
+Triển khai hoàn chỉnh Langflow tích hợp với Langfuse sử dụng Docker Compose để xây dựng, triển khai và giám sát AI workflows với observability chuyên nghiệp. Phần của hệ thống Energy AI Optimizer (EAIO) Multi-Agent System.
+
+> 📖 **Tài liệu chính**: Xem [README.md](./README.md) để biết thông tin tổng quan về toàn bộ hệ thống Lang-Stack v3.0
 
 ## ✅ Trạng thái Integration
 
 **Tracing đã hoạt động thành công!** Langfuse hiện đang nhận và hiển thị traces từ Langflow flows.
+
+**Version 3.0 Updates:**
+- ✅ Integrated với EAIO-DL deep learning backend
+- ✅ 5 specialized AI agents documentation
+- ✅ Complete project automation with Jira/Confluence
+- ✅ Production-ready deployment checklist
 
 ## Kiến trúc Hệ thống
 

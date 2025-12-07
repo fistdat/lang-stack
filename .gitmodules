@@ -1,0 +1,3 @@
+[submodule "EAIO-DL"]
+	path = EAIO-DL
+	url = https://github.com/fistdat/EAIO.git

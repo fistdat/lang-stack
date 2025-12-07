@@ -1,120 +1,183 @@
-# 🚀 Lang-Stack: Energy AI Optimizer Multi-Agent System
+# 🚀 Lang-Stack: Energy AI Optimizer Multi-Agent System (v3.0)
 
-A comprehensive AI-powered energy optimization platform combining Langflow multi-agent workflows, Streamlit web interface, and Langfuse observability for intelligent building energy management.
+A comprehensive AI-powered energy optimization platform combining Langflow multi-agent workflows, EAIO-DL deep learning backend, and Langfuse observability for intelligent building energy management with Jira/Confluence automation capabilities.
 
 ## 📋 Overview
 
-This project implements an **Energy AI Optimizer (EAIO)** system that uses multi-agent AI workflows to analyze, optimize, and manage building energy consumption. The system provides real-time insights, predictive analytics, and automated optimization recommendations for energy efficiency.
+This project implements an **Energy AI Optimizer (EAIO)** system that uses multi-agent AI workflows to analyze, optimize, and manage building energy consumption. The system provides real-time insights, predictive analytics, automated optimization recommendations, and complete project management automation for energy efficiency initiatives.
 
 ### 🏗️ System Architecture
 
 ```
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Streamlit     │    │    Langflow     │    │    Langfuse     │
-│  Web Interface  │◄──►│  Multi-Agent    │◄──►│  Observability  │
-│                 │    │     System      │    │   & Analytics   │
+│    Langflow     │    │    EAIO-DL      │    │    Langfuse     │
+│  Multi-Agent    │◄──►│  Deep Learning  │◄──►│  Observability  │
+│    Workflow     │    │    Backend      │    │   & Analytics   │
 └─────────────────┘    └─────────────────┘    └─────────────────┘
          │                       │                       │
          └───────────────────────┼───────────────────────┘
                                  │
-                    ┌─────────────────┐
-                    │   PostgreSQL    │
-                    │  Energy Database│
-                    │                 │
-                    └─────────────────┘
+                    ┌─────────────────────────────┐
+                    │   PostgreSQL + TimesFM      │
+                    │   Energy Database + ML      │
+                    └─────────────────────────────┘
+                                 │
+                    ┌─────────────────────────────┐
+                    │  Jira + Confluence          │
+                    │  Project Automation         │
+                    └─────────────────────────────┘
 ```
 
 ## 🎯 Key Features
 
-### 🤖 Multi-Agent AI System
+### 🤖 Multi-Agent AI System (Langflow)
+- **5 Specialized Agents**: Weather Intelligence, Forecast Intelligence, Optimization Strategy, System Control, and Validator agents
 - **Intelligent Energy Analysis**: AI agents analyze building energy consumption patterns
 - **Predictive Optimization**: Machine learning models predict energy usage and suggest optimizations
 - **Automated Reporting**: Generated insights and recommendations
 - **Vietnamese Language Support**: Native Vietnamese language processing
 
-### 🌐 Web Interface
-- **Interactive Chat Interface**: Real-time conversation with AI energy advisors
-- **Data Visualization**: Energy consumption charts and analytics
-- **Multi-language Support**: Vietnamese and English interfaces
-- **Responsive Design**: Works on desktop and mobile devices
+### 🧠 Deep Learning Backend (EAIO-DL)
+- **TimesFM Integration**: Advanced time-series forecasting for energy prediction
+- **React + TypeScript Frontend**: Modern chat interface with markdown rendering
+- **FastAPI Backend**: High-performance API with PostgreSQL database
+- **LLM Multi-Agent Optimization**: 60-70% cost reduction with ChatGPT 4o Mini integration
+- **Conversational AI**: Natural language interface for energy management
 
-### 📊 Observability & Monitoring
+### 🛠️ Project Automation
+- **Jira Integration**: Automated epic, story, and task creation
+- **Confluence Documentation**: Auto-generated project documentation pages
+- **Sprint Management**: 8-sprint automated planning system
+- **Traceability Matrix**: Complete requirement tracking
+
+### 📊 Observability & Monitoring (Langfuse)
 - **Real-time Monitoring**: Track AI agent performance and decisions
 - **Usage Analytics**: Monitor system usage and optimization impact
+- **Trace Collection**: Comprehensive execution tracking
 - **Error Tracking**: Comprehensive logging and debugging capabilities
 
 ### 🐳 Docker Deployment
 - **Containerized Architecture**: Easy deployment with Docker Compose
 - **Scalable Infrastructure**: Microservices-ready architecture
 - **Environment Configuration**: Flexible configuration management
+- **Integrated Stack**: Langflow + Langfuse + EAIO-DL unified deployment
 
 ## 🚀 Quick Start
 
 ### Prerequisites
 - Docker and Docker Compose
-- Git
-- 8GB+ RAM recommended
+- Git (with submodule support)
+- Python 3.10+
+- Node.js 18+ (for EAIO-DL frontend)
+- 16GB+ RAM recommended
 
-### 1. Clone Repository
+### 1. Clone Repository with Submodules
 ```bash
-git clone https://github.com/fistdat/lang-stack.git
+git clone --recursive https://github.com/fistdat/lang-stack.git
 cd lang-stack
+
+# If already cloned, initialize submodules
+git submodule update --init --recursive
 ```
 
-### 2. Start Langflow (AI Engine)
+### 2. Start Integrated Stack (Langflow + Langfuse)
 ```bash
-cd langflow
-docker-compose up -d
-```
-Access Langflow at: http://localhost:7860
+# Copy and configure environment
+cp .env.integrated .env
+# Edit .env with your secure passwords and API keys
 
-### 3. Start Streamlit Web Interface
+# Start all services
+docker-compose -f docker-compose.integrated.yml up -d
+```
+
+**Access Points:**
+- **Langflow UI**: http://localhost:7860
+- **Langfuse Observability**: http://localhost:3000
+- **MinIO Console**: http://localhost:9091
+
+### 3. Start EAIO-DL Deep Learning Backend
 ```bash
-cd streamlit_app
+cd EAIO-DL
+
+# Backend
+cd backend
 cp .env.example .env
-# Edit .env with your configuration
 docker-compose up -d
-```
-Access Web Interface at: http://localhost:8501
 
-### 4. Start Langfuse (Optional - for observability)
-```bash
-cd langfuse
-docker-compose up -d
+# Frontend
+cd ../frontend
+npm install
+npm start
 ```
-Access Langfuse at: http://localhost:3000
+
+**Access Points:**
+- **EAIO-DL Backend API**: http://localhost:8000
+- **EAIO-DL Frontend**: http://localhost:3001
+
+### 4. Run Project Automation (Optional)
+```bash
+cd automation
+pip install -r requirements.txt
+
+# Configure Jira/Confluence credentials
+cp .env.example .env
+
+# Run automation
+python run_automation.py
+```
 
 ## 📁 Project Structure
 
 ```
 lang-stack/
-├── 🌐 streamlit_app/           # Web Interface
-│   ├── app.py                  # Main Streamlit application
-│   ├── Dockerfile              # Container configuration
-│   ├── docker-compose.yml      # Service orchestration
-│   └── requirements.txt        # Python dependencies
+├── 🤖 langflow/                      # AI Multi-Agent Workflow System
+│   ├── docker-compose.yml            # Langflow deployment config
+│   ├── docker_example/               # Integration examples
+│   └── flows/                        # Agent workflow definitions
 │
-├── 🤖 langflow/                # AI Multi-Agent System
-│   ├── docker-compose.yml      # Langflow deployment
-│   ├── flow/                   # AI agent workflows
-│   └── src/                    # Langflow source code
+├── 📊 langfuse/                      # Observability Platform
+│   ├── docker-compose.yml            # Langfuse deployment
+│   └── web/                          # Observability dashboard
 │
-├── 📊 langfuse/                # Observability Platform
-│   ├── docker-compose.yml      # Langfuse deployment
-│   └── web/                    # Langfuse web interface
+├── 🧠 EAIO-DL/                      # Deep Learning Backend (Submodule)
+│   ├── backend/                      # FastAPI + PostgreSQL
+│   │   ├── api/                      # REST API routes
+│   │   ├── db/                       # Database models & migrations
+│   │   ├── services/                 # Business logic
+│   │   └── docker-compose.yml        # Backend deployment
+│   ├── frontend/                     # React + TypeScript
+│   │   ├── src/components/           # UI components
+│   │   └── src/services/             # API clients
+│   └── docs/                         # Technical documentation
 │
-├── ⚡ Energy-AI-Optimizer/     # Energy Optimization Documentation
-│   ├── EAIO_Agent_System_Prompts.md
-│   ├── stakeholder_agentic_workflows.md
-│   └── BDG2-DB/               # Database documentation
+├── 🛠️ automation/                   # Project Management Automation
+│   ├── eaio_jira_confluence_automation.py  # Main automation script
+│   ├── create_confluence_documentation.py  # Doc generation
+│   ├── sprints/                      # Sprint planning files
+│   ├── requirements.txt              # Python dependencies
+│   └── README.md                     # Automation guide
 │
-├── 📚 thesis/                  # Research Documentation
-│   ├── eaio-thesis_V3.0.md
-│   ├── eaio-thesis_V3.1.md
-│   └── eaio-thesis_V3.2.md
+├── 👥 agents/                        # Agent System Documentation
+│   ├── EAIO_SYSTEM_OVERVIEW.md       # System architecture
+│   ├── Energy_Agent_Instructions_UNIVERSAL.md
+│   ├── Weather_Intelligence_Agent_Instructions.md
+│   ├── Forecast_Intelligence_Agent_Instructions.md
+│   ├── Optimization_Strategy_Agent_Instructions.md
+│   ├── System_Control_Agent_Instructions.md
+│   ├── Validator_Agent_Instructions.md
+│   └── DEPLOYMENT_CHECKLIST.md       # Production deployment guide
 │
-└── 📋 README.md               # This file
+├── 📚 docs-superclaude/              # SuperClaude Framework Documentation
+│   └── SuperClaude-Huong-Dan-Su-Dung.md
+│
+├── 📄 .env.integrated                # Environment configuration template
+├── 🐳 docker-compose.integrated.yml  # Integrated stack deployment
+├── 📋 README.md                      # This file
+└── 📋 README-Integrated.md           # Langflow+Langfuse integration guide
 ```
+
+**Submodule:**
+- `EAIO-DL`: Separate repository at https://github.com/fistdat/EAIO.git
 
 ## 🔧 Configuration
 
@@ -276,20 +339,57 @@ docker logs langflow_postgres_1
 
 ## 📚 Documentation
 
-- **[Thesis Documentation](./thesis/)**: Research background and methodology
-- **[Energy AI Optimizer Guide](./Energy-AI-Optimizer/)**: Detailed system documentation
-- **[Streamlit App Guide](./streamlit_app/README.md)**: Web interface documentation
-- **[API Documentation](./langflow/README.md)**: Langflow API reference
+### Main Documentation
+- **[Integrated Stack Guide](./README-Integrated.md)**: Complete Langflow + Langfuse integration guide
+- **[Agent System Overview](./agents/EAIO_SYSTEM_OVERVIEW.md)**: Multi-agent architecture
+- **[Deployment Checklist](./agents/DEPLOYMENT_CHECKLIST.md)**: Production deployment guide
+
+### Agent Instructions
+- **[Energy Agent Universal](./agents/Energy_Agent_Instructions_UNIVERSAL.md)**: Core agent behavior
+- **[Weather Intelligence](./agents/Weather_Intelligence_Agent_Instructions.md)**: Weather analysis agent
+- **[Forecast Intelligence](./agents/Forecast_Intelligence_Agent_Instructions.md)**: Prediction agent
+- **[Optimization Strategy](./agents/Optimization_Strategy_Agent_Instructions.md)**: Strategy agent
+- **[System Control](./agents/System_Control_Agent_Instructions.md)**: Control agent
+- **[Validator](./agents/Validator_Agent_Instructions.md)**: Validation agent
+
+### Automation Documentation
+- **[Automation Guide](./automation/README.md)**: Jira/Confluence automation
+- **[Multi-Project Setup](./automation/MULTI_PROJECT_SETUP.md)**: Multiple project management
+
+### EAIO-DL Documentation
+- **[EAIO Repository](https://github.com/fistdat/EAIO)**: Deep learning backend documentation
+- **[System Architecture](./EAIO-DL/Energy%20AI%20Optimizer%20System%20Architecture.md)**: Technical architecture
+- **[Phase 1 Summary](./EAIO-DL/PHASE1_COMPLETE_SUMMARY.md)**: Implementation details
+
+### SuperClaude Framework
+- **[Usage Guide](./docs-superclaude/SuperClaude-Huong-Dan-Su-Dung.md)**: Vietnamese guide for SuperClaude
 
 ## 🏷️ Releases
 
-### v2.0 (Latest)
+### v3.0 (Latest - December 2025)
+- ✅ Major project restructuring and cleanup
+- ✅ EAIO-DL as git submodule with TimesFM integration
+- ✅ Complete Jira/Confluence automation system
+- ✅ 5 specialized AI agents with comprehensive documentation
+- ✅ Integrated Langflow + Langfuse observability stack
+- ✅ Multi-project management automation support
+- ✅ 8-sprint automated planning system
+- ✅ Traceability matrix and requirements tracking
+- ✅ SuperClaude framework integration
+
+### v2.3
+- ✅ Enhanced EAIO with LLM-as-a-Judge evaluation framework
+- ✅ Comprehensive system enhancements
+
+### v2.2
+- ✅ Complete lang-stack project with EAIO
+- ✅ Streamlit interface with academic thesis styling
+
+### v2.0-2.1
 - ✅ Complete Streamlit-Langflow integration
 - ✅ Docker containerization with proper networking
-- ✅ Clean response parsing for chat interface
 - ✅ Vietnamese language support
-- ✅ Comprehensive testing suite
-- ✅ Security improvements (API key management)
+- ✅ Security improvements
 
 ### v1.0
 - ✅ Basic Langflow and Langfuse integration
