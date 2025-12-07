@@ -1,0 +1,25 @@
+# EAIO Jira Automation Dependencies
+# Interactive command-line automation for Jira task creation
+
+# Core async and HTTP libraries
+aiohttp>=3.8.0
+asyncio>=3.11.0
+
+# Environment and configuration
+python-dotenv>=1.0.0
+
+# HTTP requests and API integration
+requests>=2.31.0
+
+# Rich CLI interface and prompts
+rich>=13.0.0
+
+# Data validation
+pydantic>=2.0.0
+
+# File path handling
+pathlib2>=2.3.0
+
+# Optional: For advanced markdown processing
+markdownify>=0.11.0
+beautifulsoup4>=4.12.0

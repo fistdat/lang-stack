@@ -1,0 +1,584 @@
+{
+  "epics": {
+    "epic1": {
+      "id": "10775",
+      "key": "SMMG6-26",
+      "self": "https://fistdat.atlassian.net/rest/api/3/issue/10775"
+    },
+    "epic2": {
+      "id": "10854",
+      "key": "SMMG6-33",
+      "self": "https://fistdat.atlassian.net/rest/api/3/issue/10854"
+    },
+    "epic3": {
+      "id": "10887",
+      "key": "SMMG6-36",
+      "self": "https://fistdat.atlassian.net/rest/api/3/issue/10887"
+    },
+    "epic4": {
+      "id": "10990",
+      "key": "SMMG6-44",
+      "self": "https://fistdat.atlassian.net/rest/api/3/issue/10990"
+    },
+    "epic5": {
+      "id": "11023",
+      "key": "SMMG6-47",
+      "self": "https://fistdat.atlassian.net/rest/api/3/issue/11023"
+    },
+    "epic6": {
+      "id": "11062",
+      "key": "SMMG6-51",
+      "self": "https://fistdat.atlassian.net/rest/api/3/issue/11062"
+    }
+  },
+  "features": {},
+  "user_stories": {},
+  "tasks": {
+    "SMMG6-55": {
+      "parent": "SMMG6-27",
+      "summary": "Task 1.1: C\u00e0i \u0111\u1eb7t Docker Desktop v\u00e0 configure daemon"
+    },
+    "SMMG6-56": {
+      "parent": "SMMG6-27",
+      "summary": "Task 1.2: Setup Git repository v\u1edbi branching strategy"
+    },
+    "SMMG6-57": {
+      "parent": "SMMG6-27",
+      "summary": "Task 1.3: Configure VS Code v\u1edbi extensions"
+    },
+    "SMMG6-58": {
+      "parent": "SMMG6-27",
+      "summary": "Task 1.4: Setup Docker Hub account v\u00e0 test push/pull"
+    },
+    "SMMG6-59": {
+      "parent": "SMMG6-28",
+      "summary": "Task 2.1: Conduct interviews v\u1edbi 3 stakeholder groups"
+    },
+    "SMMG6-60": {
+      "parent": "SMMG6-28",
+      "summary": "Task 2.2: T\u1ea1o Requirements Traceability Matrix"
+    },
+    "SMMG6-61": {
+      "parent": "SMMG6-28",
+      "summary": "Task 2.3: Document functional requirements (Tables 1-5)"
+    },
+    "SMMG6-62": {
+      "parent": "SMMG6-28",
+      "summary": "Task 2.4: Define non-functional requirements"
+    },
+    "SMMG6-63": {
+      "parent": "SMMG6-28",
+      "summary": "Task 2.5: Create acceptance criteria cho t\u1eebng requirement"
+    },
+    "SMMG6-64": {
+      "parent": "SMMG6-29",
+      "summary": "Task 3.1: Design Lang Stack architecture (Figure 1)"
+    },
+    "SMMG6-65": {
+      "parent": "SMMG6-29",
+      "summary": "Task 3.2: Create technology decision matrix"
+    },
+    "SMMG6-66": {
+      "parent": "SMMG6-29",
+      "summary": "Task 3.3: Document infrastructure requirements"
+    },
+    "SMMG6-67": {
+      "parent": "SMMG6-29",
+      "summary": "Task 3.4: Risk assessment cho architecture"
+    },
+    "SMMG6-68": {
+      "parent": "SMMG6-29",
+      "summary": "Task 3.5: Architecture review presentation"
+    },
+    "SMMG6-69": {
+      "parent": "SMMG6-30",
+      "summary": "Task 4.1: Create docker-compose.yml v\u1edbi 8+ services"
+    },
+    "SMMG6-70": {
+      "parent": "SMMG6-30",
+      "summary": "Task 4.2: Configure Langflow container (port 7860)"
+    },
+    "SMMG6-71": {
+      "parent": "SMMG6-30",
+      "summary": "Task 4.3: Configure Langfuse stack (web, worker, DB)"
+    },
+    "SMMG6-72": {
+      "parent": "SMMG6-30",
+      "summary": "Task 4.4: Setup service networking v\u00e0 dependencies"
+    },
+    "SMMG6-73": {
+      "parent": "SMMG6-30",
+      "summary": "Task 4.5: Create health check endpoints"
+    },
+    "SMMG6-74": {
+      "parent": "SMMG6-30",
+      "summary": "Task 4.6: Test full stack deployment end-to-end"
+    },
+    "SMMG6-75": {
+      "parent": "SMMG6-31",
+      "summary": "Task 5.1: Create buildings table v\u1edbi indexes"
+    },
+    "SMMG6-76": {
+      "parent": "SMMG6-31",
+      "summary": "Task 5.2: Create energy_meters table"
+    },
+    "SMMG6-77": {
+      "parent": "SMMG6-31",
+      "summary": "Task 5.3: Setup TimescaleDB extension"
+    },
+    "SMMG6-78": {
+      "parent": "SMMG6-31",
+      "summary": "Task 5.4: Create weather_data hypertable"
+    },
+    "SMMG6-79": {
+      "parent": "SMMG6-31",
+      "summary": "Task 5.5: Create energy_analytics table"
+    },
+    "SMMG6-80": {
+      "parent": "SMMG6-31",
+      "summary": "Task 5.6: Create ERD (Figure 9)"
+    },
+    "SMMG6-81": {
+      "parent": "SMMG6-31",
+      "summary": "Task 5.7: Write database migration scripts"
+    },
+    "SMMG6-82": {
+      "parent": "SMMG6-32",
+      "summary": "Task 6.1: Configure Langfuse API keys"
+    },
+    "SMMG6-83": {
+      "parent": "SMMG6-32",
+      "summary": "Task 6.2: Test automated trace collection"
+    },
+    "SMMG6-84": {
+      "parent": "SMMG6-32",
+      "summary": "Task 6.3: Create sample traces from Langflow"
+    },
+    "SMMG6-85": {
+      "parent": "SMMG6-32",
+      "summary": "Task 6.4: Verify traces in Langfuse UI"
+    },
+    "SMMG6-86": {
+      "parent": "SMMG6-32",
+      "summary": "Task 6.5: Setup monitoring dashboards"
+    },
+    "SMMG6-87": {
+      "parent": "SMMG6-32",
+      "summary": "Task 6.6: Test trace persistence v\u00e0 retrieval"
+    },
+    "SMMG6-88": {
+      "parent": "SMMG6-34",
+      "summary": "Task 7.1: Download BDG2 dataset (53.6M records)"
+    },
+    "SMMG6-89": {
+      "parent": "SMMG6-34",
+      "summary": "Task 7.2: Analyze dataset structure"
+    },
+    "SMMG6-90": {
+      "parent": "SMMG6-34",
+      "summary": "Task 7.3: Create ETL pipeline cho buildings"
+    },
+    "SMMG6-91": {
+      "parent": "SMMG6-34",
+      "summary": "Task 7.4: Create ETL pipeline cho meter readings"
+    },
+    "SMMG6-92": {
+      "parent": "SMMG6-34",
+      "summary": "Task 7.5: Create ETL pipeline cho weather data"
+    },
+    "SMMG6-93": {
+      "parent": "SMMG6-34",
+      "summary": "Task 7.6: Data quality validation"
+    },
+    "SMMG6-94": {
+      "parent": "SMMG6-34",
+      "summary": "Task 7.7: Performance optimization"
+    },
+    "SMMG6-95": {
+      "parent": "SMMG6-35",
+      "summary": "Task 8.1: Calculate baseline metrics (EUI, ENERGY STAR)"
+    },
+    "SMMG6-96": {
+      "parent": "SMMG6-35",
+      "summary": "Task 8.2: Create aggregated views"
+    },
+    "SMMG6-97": {
+      "parent": "SMMG6-35",
+      "summary": "Task 8.3: Create materialized views"
+    },
+    "SMMG6-98": {
+      "parent": "SMMG6-35",
+      "summary": "Task 8.4: Setup continuous aggregates (TimescaleDB)"
+    },
+    "SMMG6-99": {
+      "parent": "SMMG6-35",
+      "summary": "Task 8.5: Create indexes for analytics queries"
+    },
+    "SMMG6-100": {
+      "parent": "SMMG6-35",
+      "summary": "Task 8.6: Generate test datasets"
+    },
+    "SMMG6-101": {
+      "parent": "SMMG6-35",
+      "summary": "Task 8.7: Benchmark query performance"
+    },
+    "SMMG6-102": {
+      "parent": "SMMG6-37",
+      "summary": "Task 9.1: Design Langflow workflow architecture"
+    },
+    "SMMG6-103": {
+      "parent": "SMMG6-37",
+      "summary": "Task 9.2: Integrate Granite TTM foundation model"
+    },
+    "SMMG6-104": {
+      "parent": "SMMG6-37",
+      "summary": "Task 9.3: Implement anomaly detection (IQR, Z-score)"
+    },
+    "SMMG6-105": {
+      "parent": "SMMG6-37",
+      "summary": "Task 9.4: Create SQL query generation"
+    },
+    "SMMG6-106": {
+      "parent": "SMMG6-37",
+      "summary": "Task 9.5: Implement pattern analysis"
+    },
+    "SMMG6-107": {
+      "parent": "SMMG6-37",
+      "summary": "Task 9.6: Integrate Langfuse tracing"
+    },
+    "SMMG6-108": {
+      "parent": "SMMG6-37",
+      "summary": "Task 9.7: Create comprehensive test cases"
+    },
+    "SMMG6-109": {
+      "parent": "SMMG6-38",
+      "summary": "Task 10.1: Setup AccuWeather API integration"
+    },
+    "SMMG6-110": {
+      "parent": "SMMG6-38",
+      "summary": "Task 10.2: Implement location-based weather retrieval"
+    },
+    "SMMG6-111": {
+      "parent": "SMMG6-38",
+      "summary": "Task 10.3: Create weather-energy correlation analysis"
+    },
+    "SMMG6-112": {
+      "parent": "SMMG6-38",
+      "summary": "Task 10.4: Implement degree day calculations (HDD/CDD)"
+    },
+    "SMMG6-113": {
+      "parent": "SMMG6-38",
+      "summary": "Task 10.5: Build seasonal pattern recognition"
+    },
+    "SMMG6-114": {
+      "parent": "SMMG6-38",
+      "summary": "Task 10.6: Create Langflow workflow"
+    },
+    "SMMG6-115": {
+      "parent": "SMMG6-38",
+      "summary": "Task 10.7: Setup monitoring and alerting"
+    },
+    "SMMG6-116": {
+      "parent": "SMMG6-39",
+      "summary": "Task 11.1: Design ROI calculation framework (NPV, IRR)"
+    },
+    "SMMG6-117": {
+      "parent": "SMMG6-39",
+      "summary": "Task 11.2: Integrate GRPO reinforcement learning"
+    },
+    "SMMG6-118": {
+      "parent": "SMMG6-39",
+      "summary": "Task 11.3: Create investment prioritization algorithm"
+    },
+    "SMMG6-119": {
+      "parent": "SMMG6-39",
+      "summary": "Task 11.4: Implement ENERGY STAR certification pathway"
+    },
+    "SMMG6-120": {
+      "parent": "SMMG6-39",
+      "summary": "Task 11.5: Build carbon footprint calculator"
+    },
+    "SMMG6-121": {
+      "parent": "SMMG6-39",
+      "summary": "Task 11.6: Create load shifting optimizer"
+    },
+    "SMMG6-122": {
+      "parent": "SMMG6-39",
+      "summary": "Task 11.7: Risk assessment framework"
+    },
+    "SMMG6-123": {
+      "parent": "SMMG6-40",
+      "summary": "Task 12.1: Implement time-series forecasting (ARIMA, Prophet)"
+    },
+    "SMMG6-124": {
+      "parent": "SMMG6-40",
+      "summary": "Task 12.2: Create long-term energy forecasting"
+    },
+    "SMMG6-125": {
+      "parent": "SMMG6-40",
+      "summary": "Task 12.3: Build equipment failure prediction"
+    },
+    "SMMG6-126": {
+      "parent": "SMMG6-40",
+      "summary": "Task 12.4: Implement peak demand forecasting"
+    },
+    "SMMG6-127": {
+      "parent": "SMMG6-40",
+      "summary": "Task 12.5: Create renewable integration assessment"
+    },
+    "SMMG6-128": {
+      "parent": "SMMG6-40",
+      "summary": "Task 12.6: Build ensemble validation framework"
+    },
+    "SMMG6-129": {
+      "parent": "SMMG6-40",
+      "summary": "Task 12.7: Implement Langflow workflow"
+    },
+    "SMMG6-130": {
+      "parent": "SMMG6-41",
+      "summary": "Task 13.1: Design HVAC optimization logic"
+    },
+    "SMMG6-131": {
+      "parent": "SMMG6-41",
+      "summary": "Task 13.2: Implement setpoint management"
+    },
+    "SMMG6-132": {
+      "parent": "SMMG6-41",
+      "summary": "Task 13.3: Create zone-based control strategies"
+    },
+    "SMMG6-133": {
+      "parent": "SMMG6-41",
+      "summary": "Task 13.4: Physics-informed validation"
+    },
+    "SMMG6-134": {
+      "parent": "SMMG6-41",
+      "summary": "Task 13.5: Build BMS integration framework"
+    },
+    "SMMG6-135": {
+      "parent": "SMMG6-41",
+      "summary": "Task 13.6: Implement optimal control strategies"
+    },
+    "SMMG6-136": {
+      "parent": "SMMG6-42",
+      "summary": "Task 14.1: Create data quality validation framework"
+    },
+    "SMMG6-137": {
+      "parent": "SMMG6-42",
+      "summary": "Task 14.2: Implement compliance verification (ASHRAE, ISO)"
+    },
+    "SMMG6-138": {
+      "parent": "SMMG6-42",
+      "summary": "Task 14.3: Build safety validation engine"
+    },
+    "SMMG6-139": {
+      "parent": "SMMG6-42",
+      "summary": "Task 14.4: Create error detection mechanisms"
+    },
+    "SMMG6-140": {
+      "parent": "SMMG6-42",
+      "summary": "Task 14.5: Implement recommendation validation"
+    },
+    "SMMG6-141": {
+      "parent": "SMMG6-43",
+      "summary": "Task 15.1: Design orchestration workflows in Langflow"
+    },
+    "SMMG6-142": {
+      "parent": "SMMG6-43",
+      "summary": "Task 15.2: Implement conditional routing logic"
+    },
+    "SMMG6-143": {
+      "parent": "SMMG6-43",
+      "summary": "Task 15.3: Create state management system"
+    },
+    "SMMG6-144": {
+      "parent": "SMMG6-43",
+      "summary": "Task 15.4: Build agent handoff mechanisms"
+    },
+    "SMMG6-145": {
+      "parent": "SMMG6-43",
+      "summary": "Task 15.5: Setup performance monitoring"
+    },
+    "SMMG6-146": {
+      "parent": "SMMG6-45",
+      "summary": "Task 16.1: Design conversation flow architecture"
+    },
+    "SMMG6-147": {
+      "parent": "SMMG6-45",
+      "summary": "Task 16.2: Implement query processing pipeline"
+    },
+    "SMMG6-148": {
+      "parent": "SMMG6-45",
+      "summary": "Task 16.3: Create multi-turn conversation management"
+    },
+    "SMMG6-149": {
+      "parent": "SMMG6-45",
+      "summary": "Task 16.4: Build context preservation mechanism"
+    },
+    "SMMG6-150": {
+      "parent": "SMMG6-45",
+      "summary": "Task 16.5: Implement query routing logic"
+    },
+    "SMMG6-151": {
+      "parent": "SMMG6-45",
+      "summary": "Task 16.6: Integrate all 6 agents"
+    },
+    "SMMG6-152": {
+      "parent": "SMMG6-45",
+      "summary": "Task 16.7: Create response generation system"
+    },
+    "SMMG6-153": {
+      "parent": "SMMG6-46",
+      "summary": "Task 17.1: Design UI/UX for 3 stakeholder types"
+    },
+    "SMMG6-154": {
+      "parent": "SMMG6-46",
+      "summary": "Task 17.2: Implement React components"
+    },
+    "SMMG6-155": {
+      "parent": "SMMG6-46",
+      "summary": "Task 17.3: Create role-based access control"
+    },
+    "SMMG6-156": {
+      "parent": "SMMG6-46",
+      "summary": "Task 17.4: Build real-time monitoring displays"
+    },
+    "SMMG6-157": {
+      "parent": "SMMG6-46",
+      "summary": "Task 17.5: Integrate Langflow API endpoints"
+    },
+    "SMMG6-158": {
+      "parent": "SMMG6-46",
+      "summary": "Task 17.6: Implement data visualization (Recharts)"
+    },
+    "SMMG6-159": {
+      "parent": "SMMG6-46",
+      "summary": "Task 17.7: Create responsive layouts"
+    },
+    "SMMG6-160": {
+      "parent": "SMMG6-48",
+      "summary": "Task 18.1: Setup distributed tracing"
+    },
+    "SMMG6-161": {
+      "parent": "SMMG6-48",
+      "summary": "Task 18.2: Configure session tracking"
+    },
+    "SMMG6-162": {
+      "parent": "SMMG6-48",
+      "summary": "Task 18.3: Implement cost tracking dashboards"
+    },
+    "SMMG6-163": {
+      "parent": "SMMG6-48",
+      "summary": "Task 18.4: Create latency monitoring (P50, P95, P99)"
+    },
+    "SMMG6-164": {
+      "parent": "SMMG6-48",
+      "summary": "Task 18.5: Setup environment management"
+    },
+    "SMMG6-165": {
+      "parent": "SMMG6-48",
+      "summary": "Task 18.6: Create comprehensive monitoring dashboards"
+    },
+    "SMMG6-166": {
+      "parent": "SMMG6-49",
+      "summary": "Task 19.1: Configure 8 evaluators with thresholds"
+    },
+    "SMMG6-167": {
+      "parent": "SMMG6-49",
+      "summary": "Task 19.2: Setup scoring threshold system"
+    },
+    "SMMG6-168": {
+      "parent": "SMMG6-49",
+      "summary": "Task 19.3: Implement automated scoring pipeline"
+    },
+    "SMMG6-169": {
+      "parent": "SMMG6-49",
+      "summary": "Task 19.4: Create evaluation dashboards"
+    },
+    "SMMG6-170": {
+      "parent": "SMMG6-49",
+      "summary": "Task 19.5: Setup alerting system"
+    },
+    "SMMG6-171": {
+      "parent": "SMMG6-50",
+      "summary": "Task 20.1: Database query optimization"
+    },
+    "SMMG6-172": {
+      "parent": "SMMG6-50",
+      "summary": "Task 20.2: Implement caching strategy (Redis)"
+    },
+    "SMMG6-173": {
+      "parent": "SMMG6-50",
+      "summary": "Task 20.3: Conduct load testing (100 users)"
+    },
+    "SMMG6-174": {
+      "parent": "SMMG6-50",
+      "summary": "Task 20.4: Perform bottleneck analysis"
+    },
+    "SMMG6-175": {
+      "parent": "SMMG6-50",
+      "summary": "Task 20.5: Response time optimization"
+    },
+    "SMMG6-176": {
+      "parent": "SMMG6-52",
+      "summary": "Task 21.1: Unit testing all agents (\u226580% coverage)"
+    },
+    "SMMG6-177": {
+      "parent": "SMMG6-52",
+      "summary": "Task 21.2: Integration testing workflows"
+    },
+    "SMMG6-178": {
+      "parent": "SMMG6-52",
+      "summary": "Task 21.3: End-to-end testing scenarios"
+    },
+    "SMMG6-179": {
+      "parent": "SMMG6-52",
+      "summary": "Task 21.4: Performance testing with full dataset"
+    },
+    "SMMG6-180": {
+      "parent": "SMMG6-52",
+      "summary": "Task 21.5: Security testing (OWASP Top 10)"
+    },
+    "SMMG6-181": {
+      "parent": "SMMG6-53",
+      "summary": "Task 22.1: Technical documentation"
+    },
+    "SMMG6-182": {
+      "parent": "SMMG6-53",
+      "summary": "Task 22.2: User manuals for 3 stakeholder types"
+    },
+    "SMMG6-183": {
+      "parent": "SMMG6-53",
+      "summary": "Task 22.3: API documentation (Swagger/OpenAPI)"
+    },
+    "SMMG6-184": {
+      "parent": "SMMG6-53",
+      "summary": "Task 22.4: Deployment guides"
+    },
+    "SMMG6-185": {
+      "parent": "SMMG6-53",
+      "summary": "Task 22.5: Thesis finalization"
+    },
+    "SMMG6-186": {
+      "parent": "SMMG6-54",
+      "summary": "Task 23.1: Production environment setup"
+    },
+    "SMMG6-187": {
+      "parent": "SMMG6-54",
+      "summary": "Task 23.2: Data migration to production"
+    },
+    "SMMG6-188": {
+      "parent": "SMMG6-54",
+      "summary": "Task 23.3: Monitoring configuration"
+    },
+    "SMMG6-189": {
+      "parent": "SMMG6-54",
+      "summary": "Task 23.4: Backup & disaster recovery"
+    },
+    "SMMG6-190": {
+      "parent": "SMMG6-54",
+      "summary": "Task 23.5: Go-live execution v\u00e0 training"
+    }
+  },
+  "sprints": {},
+  "confluence_pages": {}
+}
